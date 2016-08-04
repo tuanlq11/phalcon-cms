@@ -15,8 +15,11 @@
     "vlucas/phpdotenv": "^2.3"
   },
   "autoload": {
+    "files": [
+      "src/CMS/alias.php"
+    ],
     "psr-4": {
-      "tuanlq11\\cms\\": "src/"
+      "CMS\\": "src/CMS"
     }
   }
 }
