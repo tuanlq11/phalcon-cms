@@ -25,6 +25,7 @@ class Configuration extends ConfigurationAbstract
     public function load()
     {
         $this->config = new $this->driver($this->file);
+        $this->arr_config = $this->config->toArray();
     }
 
     /**
