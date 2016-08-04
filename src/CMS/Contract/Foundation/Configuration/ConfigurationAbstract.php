@@ -73,5 +73,26 @@ abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAcc
         return $this->arr_config[$offset];
     }
 
+    /**
+     * @param mixed $offset
+     * @param mixed $value
+     *
+     * @return bool
+     */
+    public function offsetSet($offset, $value)
+    {
+        return false;
+    }
+
+    /**
+     * @param mixed $offset
+     *
+     * @return bool
+     */
+    public function offsetUnset($offset)
+    {
+        return false;
+    }
+
 
 }
