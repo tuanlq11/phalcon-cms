@@ -12,7 +12,7 @@ interface CacheManagerInterface
      *
      * @return mixed
      */
-    public function create($name, $driver, $dataType, $lifetime, $parameter);
+    public function create($name, $driver = null, $dataType = null, $lifetime = null, $parameter = null);
 
     /**
      * @param $cache

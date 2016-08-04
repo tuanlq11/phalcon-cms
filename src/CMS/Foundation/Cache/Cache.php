@@ -1,5 +1,5 @@
 <?php
-namespace CMS\Foundation;
+namespace CMS\Foundation\Cache;
 
 use CMS\Contract\Foundation\Cache\CacheAbstract;
 

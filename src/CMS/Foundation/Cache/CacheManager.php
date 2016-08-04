@@ -1,7 +1,7 @@
 <?php
 namespace CMS\Contract\Foundation\Cache;
 
-use CMS\Foundation\Cache;
+use CMS\Foundation\Cache\Cache;
 
 class CacheManager extends CacheManagerAbstract
 {
@@ -15,7 +15,7 @@ class CacheManager extends CacheManagerAbstract
      *
      * @return void
      */
-    public function create($name, $driver, $dataType, $lifetime, $parameter)
+    public function create($name, $driver = null, $dataType = null, $lifetime = null, $parameter = null)
     {
         /** Create multiple configuration  */
         if (is_array($name)) {
@@ -42,7 +42,7 @@ class CacheManager extends CacheManagerAbstract
             }
 
         } else {
-            if ($this->exists($name)) return false;
+            if ($this->exists($name)) return;
 
             $this->caches[$name] = new Cache($driver, $dataType, $lifetime, $parameter);
         }

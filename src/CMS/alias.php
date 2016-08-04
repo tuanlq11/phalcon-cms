@@ -31,7 +31,7 @@ function env($key, $default)
 
         case 'null':
         case '(null)':
-            return;
+            return null;
     }
 
     return $value;

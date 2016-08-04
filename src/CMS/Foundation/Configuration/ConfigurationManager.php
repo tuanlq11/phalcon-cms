@@ -3,8 +3,7 @@ namespace CMS\Foundation\Configuration;
 
 use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Contract\Foundation\Configuration\ConfigurationManagerAbstract as ConfigurationManagerAbstract;
-use CMS\Foundation\Cache;
-use CMS\Foundation\Configuration;
+use CMS\Foundation\Cache\Cache;
 
 class ConfigurationManager extends ConfigurationManagerAbstract
 {

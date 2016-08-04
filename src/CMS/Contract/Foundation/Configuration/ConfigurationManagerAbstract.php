@@ -2,7 +2,7 @@
 namespace CMS\Contract\Foundation\Configuration;
 
 use ArrayAccess;
-use CMS\Foundation\Cache;
+use CMS\Foundation\Cache\Cache;
 
 abstract class ConfigurationManagerAbstract implements ConfigurationManagerInterface, ArrayAccess
 {

@@ -1,5 +1,5 @@
 <?php
-namespace CMS\Foundation;
+namespace CMS\Foundation\Configuration;
 
 use CMS\Contract\Foundation\Configuration\ConfigurationAbstract;
 
@@ -11,14 +11,12 @@ class Configuration extends ConfigurationAbstract
      * @param string $name
      * @param string $file
      * @param string $driver
-     * @param mixed $lifetime
      */
-    public function __construct($file, $name, $driver, $lifetime = false)
+    public function __construct($file, $name, $driver)
     {
         $this->name = $name;
         $this->file = $file;
         $this->driver = $driver;
-        $this->lifetime = $lifetime;
     }
 
     /**

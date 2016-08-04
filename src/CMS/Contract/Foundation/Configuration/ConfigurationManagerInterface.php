@@ -1,7 +1,7 @@
 <?php
 namespace CMS\Contract\Foundation\Configuration;
 
-use CMS\Foundation\Cache;
+use CMS\Foundation\Cache\Cache;
 
 interface ConfigurationManagerInterface
 {

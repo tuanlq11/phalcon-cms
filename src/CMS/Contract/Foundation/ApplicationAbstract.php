@@ -4,7 +4,7 @@ namespace CMS\Contract\Foundation;
 use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Foundation\Application;
-use CMS\Foundation\Cache;
+use CMS\Foundation\Cache\Cache;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
