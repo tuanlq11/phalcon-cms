@@ -8,10 +8,8 @@ interface ConfigurationManagerInterface
     /**
      * Configuration Manager Interface constructor.
      *
-     * @param $basePath
-     * @param  $cache Cache
      */
-    public function __construct($basePath, &$cache);
+    public function __construct();
 
     /**
      * Create and add configuration entity
@@ -29,7 +27,7 @@ interface ConfigurationManagerInterface
      * Add configuration entity
      *
      * @param $configuration
-     * @param $name string
+     * @param $name     string
      * @param $lifetime int|null
      *
      * @return mixed
