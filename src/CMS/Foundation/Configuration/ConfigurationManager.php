@@ -11,8 +11,6 @@ class ConfigurationManager extends ConfigurationManagerAbstract
     /**
      * ConfigurationManager constructor.
      *
-     * @param       $basePath
-     * @param Cache $cacheMgr
      */
     public function __construct()
     {

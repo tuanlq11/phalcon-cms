@@ -3,6 +3,7 @@ namespace CMS\Contract\Foundation\Configuration;
 
 use ArrayAccess;
 use CMS\Foundation\Cache\Cache;
+use CMS\Foundation\Configuration\Configuration;
 
 abstract class ConfigurationManagerAbstract implements ConfigurationManagerInterface, ArrayAccess
 {
@@ -41,7 +42,7 @@ abstract class ConfigurationManagerAbstract implements ConfigurationManagerInter
     /**
      * @param mixed $offset
      *
-     * @return mixed
+     * @return Configuration
      */
     public function offsetGet($offset)
     {
