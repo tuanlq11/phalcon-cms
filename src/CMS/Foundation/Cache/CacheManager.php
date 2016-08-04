@@ -22,24 +22,13 @@ class CacheManager extends CacheManagerAbstract
         /** Create multiple configuration  */
         if (is_array($name)) {
             $caches = $name;
-            /** Array two level */
-            if (isset($caches[0]) && is_array($caches[0])) {
-                foreach ($caches as $cache) {
-                    $this->create(
-                        $cache["name"],
-                        $cache["driver"],
-                        $cache["dataType"],
-                        array_get($cache, "lifetime"),
-                        array_get($cache, "param", [])
-                    );
-                }
-            } else {
+            foreach ($caches as $name => $cache) {
                 $this->create(
-                    $caches["name"],
-                    $caches["driver"],
-                    $caches["dataType"],
-                    array_get($caches, "lifetime"),
-                    array_get($caches, "param", [])
+                    $name,
+                    $cache["driver"],
+                    $cache["dataType"],
+                    array_get($cache, "lifetime"),
+                    array_get($cache, "param", [])
                 );
             }
 
