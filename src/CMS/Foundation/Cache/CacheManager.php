@@ -1,7 +1,9 @@
 <?php
-namespace CMS\Contract\Foundation\Cache;
+namespace CMS\Foundation\Cache;
 
-use CMS\Foundation\Cache\Cache;
+use CMS\Contract\Foundation\Cache\CacheInterface;
+use CMS\Contract\Foundation\Cache\CacheManagerAbstract;
+use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 
 class CacheManager extends CacheManagerAbstract
 {

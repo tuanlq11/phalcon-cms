@@ -6,11 +6,6 @@ use Phalcon\Config;
 abstract class ConfigurationAbstract implements ConfigurationInterface
 {
     /**
-     * @var string
-     */
-    protected $basePath;
-
-    /**
      * @var Config
      */
     protected $config;
@@ -31,16 +26,8 @@ abstract class ConfigurationAbstract implements ConfigurationInterface
     protected $driver;
 
     /**
-     * Get path to file config
-     * @return string
-     */
-    public function getPath()
-    {
-        return $this->basePath . DIRECTORY_SEPARATOR . $this->file;
-    }
-
-    /**
      * Get name of me
+     *
      * @return string
      */
     public function getName()
@@ -50,7 +37,9 @@ abstract class ConfigurationAbstract implements ConfigurationInterface
 
     /**
      * Set name for me
+     *
      * @param $name
+     *
      * @return void
      */
     public function setName($name)
