@@ -3,7 +3,7 @@
 namespace CMS\Foundation;
 
 use CMS\Foundation\Configuration\ConfigurationManager;
-use CMS\Contract\Foundation\Cache\CacheManager;
+use CMS\Foundation\Cache\CacheManager;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Application as MvcApplication;
