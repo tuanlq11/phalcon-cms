@@ -1,0 +1,22 @@
+{
+  "name": "tuanlq11/cms",
+  "description": "Phalcon CMS kernel",
+  "license": "MIT",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Fallen",
+      "email": "tuanlq.it@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.0",
+    "phalcon/devtools": "^3.0",
+    "vlucas/phpdotenv": "^2.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "tuanlq11\\cms\\": "src/"
+    }
+  }
+}
