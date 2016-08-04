@@ -12,7 +12,7 @@ use Phalcon\Mvc\Application as MvcApplication;
 
 abstract class ApplicationAbstract implements ApplicationInterface
 {
-    protected const VERSION = "2.0.0";
+    const VERSION = "2.0.0";
 
     /**
      * @var ApplicationAbstract
