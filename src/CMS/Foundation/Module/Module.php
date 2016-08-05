@@ -52,7 +52,7 @@ class Module extends ModuleAbstract
                         "name"     => $file,
                         "file"     => $this->moduleConfigPath . DIRECTORY_SEPARATOR . $file,
                         "driver"   => ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]],
-                        "lifetime" => $this->moduleConfigLifetime,
+                        "lifetime" => null,
                     ];
 
                     $this->configuration->create($schema);
