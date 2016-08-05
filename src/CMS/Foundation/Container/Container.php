@@ -23,6 +23,7 @@ class Container extends ContainerAbstract
             };
         }
         $this->shared = $shared;
+        $this->name   = $name;
     }
 
     /**

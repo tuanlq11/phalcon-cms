@@ -30,9 +30,15 @@ class Application extends ApplicationAbstract
 
         $this->loadBaseConfiguration();
 
+        /** Init Factory Default Instance */
+        $this->factoryDefault();
+        /** Init MvcApplication */
+        $this->application();
+
         /** Base Service */
         $this->cache();
         $this->session();
+        $this->register();
         /** End */
     }
 
