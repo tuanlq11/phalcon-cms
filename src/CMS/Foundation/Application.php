@@ -4,11 +4,12 @@ namespace CMS\Foundation;
 
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Cache\CacheManager;
-use CMS\Foundation\Configuration\Frontend\KernelConfiguration;
+use CMS\Foundation\Session\Session;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Application as MvcApplication;
 use CMS\Contract\Foundation\ApplicationAbstract;
+use Phalcon\Mvc\Router;
 
 class Application extends ApplicationAbstract
 {
@@ -120,8 +121,8 @@ class Application extends ApplicationAbstract
      */
     function loadCacheInstance()
     {
-        $this->caches = new CacheManager();
-        $this->caches->create($this->configurations["kernel"]["cache"]);
+        $this->cache = new CacheManager();
+        $this->cache->create($this->configuration[static::PREFIX_KERNEL_CONFIG]["cache"]);
     }
 
     /**
@@ -130,9 +131,42 @@ class Application extends ApplicationAbstract
      */
     public function loadBaseConfiguration()
     {
-        $this->configurations = new ConfigurationManager($this->basePath);
-        $this->configurations->create($this->baseConfigurationSchema);
+        $this->configuration = new ConfigurationManager($this->basePath);
+        $this->configuration->create($this->baseConfigurationSchema);
     }
 
+    /**
+     * Register base service: [session, db, router, view, response]
+     *
+     * @return void
+     */
+    function registerBaseService()
+    {
 
+    }
+
+    /**
+     * Load session instance
+     *
+     * @return Session
+     */
+    function loadSession()
+    {
+        if (is_null($this->session)) {
+//            $config =
+            $this->session = new Session(
+//                $this->configuration[static::PREFIX_KERNEL_CONFIG]->
+            );
+        }
+    }
+
+    /**
+     * Load Router instance
+     *
+     * @return Router
+     */
+    function loadRouter()
+    {
+        // TODO: Implement loadRouter() method.
+    }
 }

@@ -6,10 +6,12 @@ use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Foundation\Application;
 use CMS\Foundation\Cache\Cache;
 use CMS\Foundation\Configuration\ConfigurationManager;
-use CMS\Foundation\Configuration\Frontend\KernelConfiguration;
+use CMS\Foundation\Configuration\Frontend\Kernel;
+use CMS\Foundation\Session\Session;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
 use Phalcon\Mvc\Application as MvcApplication;
+use Phalcon\Mvc\Router;
 
 abstract class ApplicationAbstract implements ApplicationInterface
 {
@@ -51,12 +53,22 @@ abstract class ApplicationAbstract implements ApplicationInterface
     /**
      * @var ConfigurationManager
      */
-    protected $configurations;
+    protected $configuration;
 
     /**
      * @var CacheManagerInterface
      */
-    protected $caches;
+    protected $cache;
+
+    /**
+     * @var Session
+     */
+    protected $session;
+
+    /**
+     * @var Router
+     */
+    protected $router;
 
     /**
      * @var Cache
@@ -70,10 +82,11 @@ abstract class ApplicationAbstract implements ApplicationInterface
      * @var array
      */
     protected $baseConfigurationSchema = [
-        "name"     => "kernel",
+        "name"     => ApplicationInterface::PREFIX_KERNEL_CONFIG,
         "file"     => "config/kernel.php",
         "driver"   => ConfigurationInterface::DRIVER_PHP,
         "lifetime" => null,
+        "class"    => Kernel::class,
     ];
 
     /**
@@ -131,7 +144,7 @@ abstract class ApplicationAbstract implements ApplicationInterface
      */
     public function getCaches()
     {
-        return $this->caches;
+        return $this->cache;
     }
 
     /**
@@ -139,7 +152,7 @@ abstract class ApplicationAbstract implements ApplicationInterface
      */
     public function getConfigurations()
     {
-        return $this->configurations;
+        return $this->configuration;
     }
 
 

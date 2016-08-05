@@ -11,7 +11,7 @@ class Application extends \Phalcon\Mvc\Application
          * Register module
          */
         foreach ($modules as $name => $module) {
-
+            
         }
     }
 

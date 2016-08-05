@@ -3,10 +3,13 @@ namespace CMS\Contract\Foundation;
 
 use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
+use CMS\Foundation\Session\Session;
 
 interface ApplicationInterface
 {
     const VERSION = "2.0.0";
+
+    const PREFIX_KERNEL_CONFIG = "kernel";
 
     /**
      * ApplicationInterface constructor.
@@ -71,6 +74,21 @@ interface ApplicationInterface
      * @return mixed
      */
     public function registerShared($name, $callback);
+
+    /**
+     * @return mixed
+     */
+    function registerBaseService();
+
+    /**
+     * @return Session
+     */
+    function loadSession();
+
+    /**
+     * @return mixed
+     */
+    function loadRouter();
 
     /**
      * @return mixed
