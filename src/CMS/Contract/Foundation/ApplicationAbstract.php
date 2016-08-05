@@ -143,22 +143,6 @@ abstract class ApplicationAbstract implements ApplicationInterface
     }
 
     /**
-     * Return instance of application
-     *
-     * @param $basePath string|null
-     *
-     * @return Application
-     */
-    public static function getInstance($basePath = null)
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new Application($basePath);
-        }
-
-        return self::$instance;
-    }
-
-    /**
      * Get number of version application
      *
      * @return string

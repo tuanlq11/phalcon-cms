@@ -60,6 +60,22 @@ class Application extends ApplicationAbstract
     }
 
     /**
+     * Return instance of application
+     *
+     * @param $basePath string|null
+     *
+     * @return Application
+     */
+    public static function getInstance($basePath = null)
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new Application($basePath);
+        }
+
+        return self::$instance;
+    }
+
+    /**
      * Init FactoryDefault Instance
      *
      * @return FactoryDefault
