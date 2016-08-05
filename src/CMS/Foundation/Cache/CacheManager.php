@@ -14,28 +14,34 @@ class CacheManager extends CacheManagerAbstract
      * @param $dataType
      * @param $lifetime
      * @param $parameter
+     * @param $callback \Closure
      *
-     * @return void
+     * @return mixed
      */
-    public function create($name, $driver = null, $dataType = null, $lifetime = null, $parameter = null)
+    public function create($name, $driver = null, $dataType = null, $lifetime = null, $parameter = null, $callback = null)
     {
         /** Create multiple configuration  */
         if (is_array($name)) {
             $caches = $name;
             foreach ($caches as $name => $cache) {
-                $this->create(
+                $cache = $this->create(
                     $name,
                     $cache["driver"],
                     $cache["dataType"],
                     array_get($cache, "lifetime"),
                     array_get($cache, "param", [])
                 );
+                if ($callback) {
+                    $callback($name, $cache);
+                }
             }
 
         } else {
             if ($this->exists($name)) return;
 
             $this->caches[$name] = new Cache($driver, $dataType, $lifetime, $parameter);
+
+            return $this->caches[$name];
         }
 
     }

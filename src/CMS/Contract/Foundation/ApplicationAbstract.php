@@ -1,6 +1,7 @@
 <?php
 namespace CMS\Contract\Foundation;
 
+use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Foundation\Application;
@@ -79,6 +80,11 @@ abstract class ApplicationAbstract implements ApplicationInterface
      * @var Container[]
      */
     protected $containers;
+
+    /**
+     * @var CacheInterface
+     */
+    protected $cache_default;
 
     /**
      * Kernel schema
@@ -191,5 +197,4 @@ abstract class ApplicationAbstract implements ApplicationInterface
     {
         unset($this->containers[$name]);
     }
-
 }

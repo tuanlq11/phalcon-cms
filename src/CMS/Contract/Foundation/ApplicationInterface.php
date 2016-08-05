@@ -14,6 +14,9 @@ interface ApplicationInterface
 
     const SESSION_SERVICE_NAME = "session";
 
+    const CACHE_DEFAULT_CONFIG_KEY = "cache_default";
+    const CACHE_DEFAULT            = "storage";
+
     /**
      * ApplicationInterface constructor.
      *
@@ -125,5 +128,5 @@ interface ApplicationInterface
      */
     public function getConfigurations();
 
-
+    public function cache_default();
 }

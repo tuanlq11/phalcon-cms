@@ -2,6 +2,7 @@
 
 namespace CMS\Foundation;
 
+use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Cache\CacheManager;
 use CMS\Foundation\Session\Session;
@@ -111,15 +112,20 @@ class Application extends ApplicationAbstract
     function cache()
     {
         if (is_null($this->cache)) {
-            $this->cache = new CacheManager();
-            $this->cache->create($this->configuration[static::PREFIX_KERNEL_CONFIG]["cache"]);
 
-            foreach ($this->cache as $name => $c) {
-                $callback = function () use ($c) {
-                    return $c;
-                };
-                $this->bindService($name, $callback, true);
-            }
+            $this->cache = new CacheManager();
+            $this->cache->create(
+                $this->configuration[static::PREFIX_KERNEL_CONFIG]["cache"], null, null, null, null,
+                function ($name, $cache) {
+                    $callback = function () use ($cache) {
+                        return $cache;
+                    };
+                    $this->bindService($name, $callback, true);
+                }
+            );
+
+            /** Apply cache manager to configuration instance */
+            $this->configuration->setCacheMgr($this->cache_default());
         }
 
         return $this->cache;
@@ -169,5 +175,18 @@ class Application extends ApplicationAbstract
     function router()
     {
         // TODO: Implement loadRouter() method.
+    }
+
+    /**
+     * @return CacheInterface|mixed
+     */
+    public function cache_default()
+    {
+        if (is_null($this->cache_default)) {
+            $default_cache       = $this->configuration[static::PREFIX_KERNEL_CONFIG]->get(static::CACHE_DEFAULT_CONFIG_KEY, static::CACHE_DEFAULT);
+            $this->cache_default = $this->cache->get($default_cache);
+        }
+
+        return $this->cache_default;
     }
 }

@@ -2,7 +2,7 @@
 return [
 
     /** DATABASE CONFIG */
-    "db"      => [
+    "db"    => [
         "adapter"  => env("DB_ADAPTER", \Phalcon\Db\Adapter\Pdo\Postgresql::class),
         "host"     => env("DB_HOST", "127.0.0.1"),
         "port"     => env("DB_PORT", 5432),
@@ -12,8 +12,8 @@ return [
     ],
 
     /** Cache Configuration */
-    "cache"   => [
-        "kernel" => [
+    "cache" => [
+        "storage" => [
             "driver"   => \CMS\Contract\Foundation\Cache\CacheInterface::DRIVER_REDIS,
             "dataType" => \CMS\Contract\Foundation\Cache\CacheInterface::DATA_TYPE_DATA,
             "lifetime" => 300,
@@ -26,7 +26,9 @@ return [
         ],
     ],
 
+    "default_cache" => "storage",
+
     /** APP_DIR */
-    "app_dir" => "app",
+    "app_dir"       => "app",
 
 ];
