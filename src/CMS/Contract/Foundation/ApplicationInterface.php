@@ -3,6 +3,7 @@ namespace CMS\Contract\Foundation;
 
 use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
+use CMS\Foundation\Configuration\Frontend\Kernel;
 use CMS\Foundation\Session\Session;
 
 interface ApplicationInterface
@@ -106,6 +107,11 @@ interface ApplicationInterface
      * Create cache instance for application
      */
     function loadCacheInstance();
+
+    /**
+     * @return Kernel
+     */
+    public function kernelConfig();
 
     /**
      * Handle request

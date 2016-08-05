@@ -155,5 +155,13 @@ abstract class ApplicationAbstract implements ApplicationInterface
         return $this->configuration;
     }
 
+    /**
+     * @return Kernel
+     */
+    public function kernelConfig()
+    {
+        return $this->configuration[static::PREFIX_KERNEL_CONFIG];
+    }
+
 
 }
