@@ -8,9 +8,10 @@ class Cache extends CacheAbstract
 
     /**
      * Cache constructor.
-     * @param $driver string
-     * @param $dataType string
-     * @param $lifetime int
+     *
+     * @param $driver    string
+     * @param $dataType  string
+     * @param $lifetime  int
      * @param $parameter array
      */
     public function __construct($driver, $dataType, $lifetime, $parameter)
