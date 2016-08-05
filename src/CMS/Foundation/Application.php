@@ -134,13 +134,5 @@ class Application extends ApplicationAbstract
         $this->configurations->create($this->baseConfigurationSchema);
     }
 
-    /**
-     * @return KernelConfiguration
-     */
-    public function kernelConfiguration()
-    {
-        return $this->configurations[static::KERNEL_CONFIGURATION_NAME];
-    }
-
 
 }

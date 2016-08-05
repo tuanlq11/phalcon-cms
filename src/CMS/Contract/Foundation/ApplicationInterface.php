@@ -3,13 +3,10 @@ namespace CMS\Contract\Foundation;
 
 use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
-use CMS\Foundation\Configuration\Frontend\KernelConfiguration;
 
 interface ApplicationInterface
 {
     const VERSION = "2.0.0";
-
-    const KERNEL_CONFIGURATION_NAME = "name";
 
     /**
      * ApplicationInterface constructor.
@@ -109,8 +106,4 @@ interface ApplicationInterface
      */
     public function getConfigurations();
 
-    /**
-     * @return KernelConfiguration
-     */
-    public function kernelConfiguration();
 }
