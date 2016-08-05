@@ -12,6 +12,8 @@ interface ApplicationInterface
     const PREFIX_KERNEL_CONFIG = "kernel";
     const PREFIX_APP_CONFIG    = "app";
 
+    const SESSION_SERVICE_NAME = "session";
+
     /**
      * ApplicationInterface constructor.
      *

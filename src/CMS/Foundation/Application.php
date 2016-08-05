@@ -155,7 +155,7 @@ class Application extends ApplicationAbstract
             $callback = function () use ($session) {
                 return $session;
             };
-            $this->bindService($this->session->getName(), $callback, true);
+            $this->bindService(static::SESSION_SERVICE_NAME, $callback, true);
         }
 
         return $this->session;
