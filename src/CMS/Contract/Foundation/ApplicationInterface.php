@@ -1,6 +1,7 @@
 <?php
 namespace CMS\Contract\Foundation;
 
+use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Session\Session;
@@ -11,6 +12,7 @@ interface ApplicationInterface
 
     const PREFIX_KERNEL_CONFIG = "kernel";
     const PREFIX_APP_CONFIG    = "app";
+    const PREFIX_MODULE_CONFIG = "module";
 
     const SESSION_SERVICE_NAME = "session";
 
@@ -128,5 +130,13 @@ interface ApplicationInterface
      */
     public function getConfigurations();
 
+    /**
+     * @return CacheInterface
+     */
     public function cache_default();
+
+    /**
+     * @return void
+     */
+    function initKernel();
 }

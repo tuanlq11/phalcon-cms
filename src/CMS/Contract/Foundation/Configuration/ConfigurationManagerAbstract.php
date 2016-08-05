@@ -12,7 +12,7 @@ abstract class ConfigurationManagerAbstract implements ConfigurationManagerInter
      *
      * @var string
      */
-    protected $prefix = "binary_kernel_configuration:";
+    public $prefix = "binary_kernel_configuration:";
 
     /**
      * @var array
@@ -163,5 +163,6 @@ abstract class ConfigurationManagerAbstract implements ConfigurationManagerInter
 
         return $this->cacheMgr->driver()->save($name, $content, $lifetime);
     }
+
 
 }

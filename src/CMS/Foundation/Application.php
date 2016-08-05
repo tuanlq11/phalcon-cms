@@ -21,10 +21,16 @@ class Application extends ApplicationAbstract
      */
     public function __construct($basePath)
     {
-        static::$instance = $this;
+        static::$instance = &$this;
 
         $this->setBasePath($basePath);
+    }
 
+    /**
+     * Init Kernel requirement
+     */
+    function initKernel()
+    {
         /** Load Env config */
         $this->loadEnvironment();
         /** End */
@@ -39,8 +45,9 @@ class Application extends ApplicationAbstract
         /** Base Service */
         $this->cache();
         $this->session();
-        $this->register();
         /** End */
+
+        $this->register();
     }
 
     /**
@@ -116,8 +123,8 @@ class Application extends ApplicationAbstract
             $this->cache = new CacheManager();
             $this->cache->create(
                 $this->configuration[static::PREFIX_KERNEL_CONFIG]["cache"], null, null, null, null,
-                function ($name, $cache) {
-                    $callback = function () use ($cache) {
+                function ($name, &$cache) {
+                    $callback = function () use (&$cache) {
                         return $cache;
                     };
                     $this->bindService($name, $callback, true);

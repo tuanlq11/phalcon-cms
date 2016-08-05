@@ -6,6 +6,12 @@ use ArrayAccess;
 
 abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAccess
 {
+    public static $EXTENSION_DRIVER = [
+        "yaml" => ConfigurationInterface::DRIVER_YAML,
+        "php"  => ConfigurationInterface::DRIVER_PHP,
+        "ini"  => ConfigurationInterface::DRIVER_INI,
+        "json" => ConfigurationInterface::DRIVER_JSON,
+    ];
     /**
      * @var Config
      */

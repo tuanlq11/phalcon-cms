@@ -1,0 +1,7 @@
+user:
+  className: App\User\Bootstrap
+  path: app/User/Bootstrap.php
+
+group:
+  className: App\User\Bootstrap
+  path: app/User/Bootstrap.php

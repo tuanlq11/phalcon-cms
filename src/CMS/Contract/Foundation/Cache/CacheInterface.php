@@ -33,4 +33,37 @@ interface CacheInterface
      * @return Backend
      */
     public function driver();
+
+    /**
+     * @param      $keyName
+     * @param null $lifetime
+     *
+     * @return mixed
+     */
+    public function get($keyName, $lifetime = null);
+
+    /**
+     * @param $keyName
+     *
+     * @return mixed
+     */
+    public function delete($keyName);
+
+    /**
+     * @param $keyName
+     * @param $content
+     * @param $lifetime
+     * @param $stopBuffer bool
+     *
+     * @return mixed
+     */
+    public function save($keyName, $content, $lifetime = null, $stopBuffer = true);
+
+    /**
+     * @param $keyName
+     * @param $lifetime
+     *
+     * @return bool
+     */
+    public function exists($keyName, $lifetime = null);
 }

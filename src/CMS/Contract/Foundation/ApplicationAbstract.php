@@ -107,6 +107,18 @@ abstract class ApplicationAbstract implements ApplicationInterface
     ];
 
     /**
+     * Module Schema Config
+     *
+     * @var array
+     */
+    protected $moduleConfigurationSchema = [
+        "name"     => ApplicationInterface::PREFIX_MODULE_CONFIG,
+        "file"     => "config/module.yaml",
+        "driver"   => ConfigurationInterface::DRIVER_YAML,
+        "lifetime" => null,
+    ];
+
+    /**
      * Get current project base path
      *
      * @return string
