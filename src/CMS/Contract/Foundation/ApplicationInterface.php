@@ -49,6 +49,11 @@ interface ApplicationInterface
     function loadBaseConfiguration();
 
     /**
+     * @return mixed
+     */
+    function loadModuleConfig();
+
+    /**
      * Create cache instance for application
      */
     function cache();

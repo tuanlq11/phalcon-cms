@@ -25,6 +25,12 @@ class Application extends ApplicationAbstract
         static::$instance = &$this;
 
         $this->setBasePath($basePath);
+
+        $this->initKernel();
+
+        /** Module Loader */
+        $this->loadModuleConfig();
+        /** End */
     }
 
     /**
@@ -32,6 +38,8 @@ class Application extends ApplicationAbstract
      */
     function initKernel()
     {
+        $this->configuration = new ConfigurationManager($this->basePath);
+
         /** Load Env config */
         $this->loadEnvironment();
         /** End */
@@ -96,7 +104,7 @@ class Application extends ApplicationAbstract
     /**
      * Handle request
      *
-     * @return ResponseInterface
+     * @return mixed
      */
     public function handle()
     {
@@ -148,8 +156,18 @@ class Application extends ApplicationAbstract
      */
     function loadBaseConfiguration()
     {
-        $this->configuration = new ConfigurationManager($this->basePath);
         $this->configuration->create($this->baseConfigurationSchema);
+    }
+
+    /**
+     * @return void
+     */
+    function loadModuleConfig()
+    {
+        $this->moduleConfigurationSchema["lifetime"] = $this->configuration["kernel"]
+                                                           ->get("module", ["schema_lifetime" => null])["schema_lifetime"];
+
+        $this->configuration->create($this->moduleConfigurationSchema);
     }
 
     /**
@@ -185,7 +203,7 @@ class Application extends ApplicationAbstract
      */
     function router()
     {
-        // TODO: Implement loadRouter() method.
+
     }
 
     /**
