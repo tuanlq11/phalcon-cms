@@ -23,6 +23,7 @@ interface ConfigurationInterface
 
     /**
      * Load configuration from file
+     *
      * @return mixed
      */
     public function load();
@@ -33,14 +34,22 @@ interface ConfigurationInterface
     public function __toString();
 
     /**
+     * @return array
+     */
+    public function toArray();
+
+    /**
      * Get configuration name
+     *
      * @return mixed
      */
     public function getName();
 
     /**
      * Set name
+     *
      * @param $name
+     *
      * @return mixed
      */
     public function setName($name);

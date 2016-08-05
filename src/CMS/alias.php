@@ -38,6 +38,14 @@ function env($key, $default)
 }
 
 /**
+ * @return \CMS\Foundation\Application
+ */
+function app()
+{
+    return \CMS\Foundation\Application::getInstance();
+}
+
+/**
  * @param      $array
  * @param      $key
  * @param null $default

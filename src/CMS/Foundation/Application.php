@@ -4,6 +4,7 @@ namespace CMS\Foundation;
 
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Cache\CacheManager;
+use CMS\Foundation\Configuration\Frontend\KernelConfiguration;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Mvc\Application as MvcApplication;
@@ -109,6 +110,7 @@ class Application extends ApplicationAbstract
     public function loadEnvironment()
     {
         (new Dotenv($this->basePath, $this->environmentFile))->load();
+        $this->environment = env("APP_ENV", "development");
     }
 
     /**
@@ -131,5 +133,14 @@ class Application extends ApplicationAbstract
         $this->configurations = new ConfigurationManager($this->basePath);
         $this->configurations->create($this->baseConfigurationSchema);
     }
+
+    /**
+     * @return KernelConfiguration
+     */
+    public function kernelConfiguration()
+    {
+        return $this->configurations[static::KERNEL_CONFIGURATION_NAME];
+    }
+
 
 }

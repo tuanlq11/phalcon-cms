@@ -3,8 +3,6 @@ namespace CMS\Foundation\Configuration;
 
 use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Contract\Foundation\Configuration\ConfigurationManagerAbstract as ConfigurationManagerAbstract;
-use CMS\Foundation\Application;
-use CMS\Foundation\Cache\Cache;
 
 class ConfigurationManager extends ConfigurationManagerAbstract
 {
@@ -14,7 +12,7 @@ class ConfigurationManager extends ConfigurationManagerAbstract
      */
     public function __construct()
     {
-        $this->basePath = Application::getInstance()->basePath();
+        $this->basePath = app()->basePath();
     }
 
 

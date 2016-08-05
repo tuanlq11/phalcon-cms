@@ -14,8 +14,8 @@ class Configuration extends ConfigurationAbstract
      */
     public function __construct($file, $name, $driver)
     {
-        $this->name = $name;
-        $this->file = $file;
+        $this->name   = $name;
+        $this->file   = $file;
         $this->driver = $driver;
     }
 
@@ -24,7 +24,7 @@ class Configuration extends ConfigurationAbstract
      */
     public function load()
     {
-        $this->config = new $this->driver($this->file);
+        $this->config     = new $this->driver($this->file);
         $this->arr_config = $this->config->toArray();
     }
 
@@ -35,4 +35,13 @@ class Configuration extends ConfigurationAbstract
     {
         return serialize($this);
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->config->toArray();
+    }
+
 }

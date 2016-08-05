@@ -6,14 +6,13 @@ use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Foundation\Application;
 use CMS\Foundation\Cache\Cache;
 use CMS\Foundation\Configuration\ConfigurationManager;
+use CMS\Foundation\Configuration\Frontend\KernelConfiguration;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
 use Phalcon\Mvc\Application as MvcApplication;
 
 abstract class ApplicationAbstract implements ApplicationInterface
 {
-    const VERSION = "2.0.0";
-
     /**
      * @var ApplicationAbstract
      */
@@ -71,10 +70,11 @@ abstract class ApplicationAbstract implements ApplicationInterface
      * @var array
      */
     protected $baseConfigurationSchema = [
-        "name"     => "kernel",
+        "name"     => ApplicationInterface::KERNEL_CONFIGURATION_NAME,
         "file"     => "config/kernel.php",
         "driver"   => ConfigurationInterface::DRIVER_PHP,
         "lifetime" => null,
+        "class"    => KernelConfiguration::class,
     ];
 
     /**
