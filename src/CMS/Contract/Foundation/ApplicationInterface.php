@@ -3,7 +3,6 @@ namespace CMS\Contract\Foundation;
 
 use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
-use CMS\Foundation\Configuration\Frontend\Kernel;
 use CMS\Foundation\Session\Session;
 
 interface ApplicationInterface
@@ -11,6 +10,7 @@ interface ApplicationInterface
     const VERSION = "2.0.0";
 
     const PREFIX_KERNEL_CONFIG = "kernel";
+    const PREFIX_APP_CONFIG    = "app";
 
     /**
      * ApplicationInterface constructor.
@@ -20,18 +20,31 @@ interface ApplicationInterface
     public function __construct($basePath);
 
     /**
-     * Get version of application
-     *
-     * @return mixed
+     * @return Session
      */
-    public function version();
+    function session();
 
     /**
-     * Get APP_PATH of project bootstrap
+     * @return mixed
+     */
+    function router();
+
+    /**
+     * @return mixed
+     */
+    function loadEnvironment();
+
+    /**
+     * Load base/kernel config
      *
      * @return mixed
      */
-    public function basePath();
+    function loadBaseConfiguration();
+
+    /**
+     * Create cache instance for application
+     */
+    function cache();
 
     /**
      * Set Base Path
@@ -57,61 +70,47 @@ interface ApplicationInterface
     function application();
 
     /**
-     * Register service
+     * Get version of application
      *
+     * @return mixed
+     */
+    public function version();
+
+    /**
+     * Get APP_PATH of project bootstrap
+     *
+     * @return mixed
+     */
+    public function basePath();
+
+    /**
+     * Register bind service
+     *
+     * @return mixed
+     */
+    public function register();
+
+    /**
+     * Register shared bind service
+     *
+     * @return mixed
+     */
+    public function registerShared();
+
+    /**
      * @param $name
-     * @param $callback
+     * @param $service
      *
      * @return mixed
      */
-    public function register($name, $callback);
+    public function bindService($name, &$service);
 
     /**
-     * Register shared service
-     *
      * @param $name
-     * @param $callback
      *
      * @return mixed
      */
-    public function registerShared($name, $callback);
-
-    /**
-     * @return mixed
-     */
-    function registerBaseService();
-
-    /**
-     * @return Session
-     */
-    function loadSession();
-
-    /**
-     * @return mixed
-     */
-    function loadRouter();
-
-    /**
-     * @return mixed
-     */
-    function loadEnvironment();
-
-    /**
-     * Load base/kernel config
-     *
-     * @return mixed
-     */
-    function loadBaseConfiguration();
-
-    /**
-     * Create cache instance for application
-     */
-    function loadCacheInstance();
-
-    /**
-     * @return Kernel
-     */
-    public function kernelConfig();
+    public function unbindService($name);
 
     /**
      * Handle request
@@ -129,5 +128,6 @@ interface ApplicationInterface
      * @return ConfigurationManager
      */
     public function getConfigurations();
+
 
 }

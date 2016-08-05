@@ -44,4 +44,15 @@ class Configuration extends ConfigurationAbstract
         return $this->config->toArray();
     }
 
+    /**
+     * @param      $index
+     * @param null $default
+     *
+     * @return mixed
+     */
+    public function get($index, $default = null)
+    {
+        return $this->config->get($index, $default);
+    }
+
 }

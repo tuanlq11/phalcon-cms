@@ -14,11 +14,13 @@ interface SessionInterface
     /**
      * Session Interface constructor.
      *
-     * @param $adapter
-     * @param $name
-     * @param $option
+     * @param $adapter   boolean
+     * @param $name      boolean
+     * @param $autostart boolean
+     * @param $enabled   boolean
+     * @param $option    array
      */
-    public function __construct($adapter, $name, $option);
+    public function __construct($adapter, $name, $option, $autostart = true, $enabled = true);
 
     /**
      * @return mixed
@@ -76,4 +78,9 @@ interface SessionInterface
      * Get session name
      */
     public function getName();
+
+    /**
+     * @return mixed
+     */
+    public function handle();
 }

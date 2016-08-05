@@ -11,17 +11,14 @@ abstract class SessionAbstract implements SessionInterface
     protected $adapter;
 
     /**
-     * SessionAbstract constructor.
-     *
-     * @param $adapter string
-     * @param $name    string
-     * @param $option  array
+     * @var boolean
      */
-    public function __construct($adapter, $name, $option)
-    {
-        $this->adapter = new $adapter($option);
-        $this->adapter->setName($name);
-    }
+    protected $autostart;
+
+    /**
+     * @var boolean
+     */
+    protected $enabled;
 
     /**
      * Start handle session

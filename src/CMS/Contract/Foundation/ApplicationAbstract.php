@@ -6,7 +6,6 @@ use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Foundation\Application;
 use CMS\Foundation\Cache\Cache;
 use CMS\Foundation\Configuration\ConfigurationManager;
-use CMS\Foundation\Configuration\Frontend\Kernel;
 use CMS\Foundation\Session\Session;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
@@ -76,17 +75,28 @@ abstract class ApplicationAbstract implements ApplicationInterface
     protected $appCache;
 
     /**
+     * @var array
+     */
+    protected $services;
+
+    /**
      * Kernel schema
      * Lifetime is configured in env config
      *
      * @var array
      */
     protected $baseConfigurationSchema = [
-        "name"     => ApplicationInterface::PREFIX_KERNEL_CONFIG,
-        "file"     => "config/kernel.php",
-        "driver"   => ConfigurationInterface::DRIVER_PHP,
-        "lifetime" => null,
-        "class"    => Kernel::class,
+        [
+            "name"     => ApplicationInterface::PREFIX_KERNEL_CONFIG,
+            "file"     => "config/kernel.php",
+            "driver"   => ConfigurationInterface::DRIVER_PHP,
+            "lifetime" => null,
+        ], [
+            "name"     => ApplicationInterface::PREFIX_APP_CONFIG,
+            "file"     => "config/app.php",
+            "driver"   => ConfigurationInterface::DRIVER_PHP,
+            "lifetime" => null,
+        ],
     ];
 
     /**
@@ -156,12 +166,28 @@ abstract class ApplicationAbstract implements ApplicationInterface
     }
 
     /**
-     * @return Kernel
+     * Bind service
+     *
+     * @param $name
+     * @param $service
+     *
+     * @return void
      */
-    public function kernelConfig()
+    public function bindService($name, &$service)
     {
-        return $this->configuration[static::PREFIX_KERNEL_CONFIG];
+        $this->services[$name] = &$service;
     }
 
+    /**
+     * Unbind service
+     *
+     * @param $name
+     *
+     * @return void
+     */
+    public function unbindService($name)
+    {
+        unset($this->services[$name]);
+    }
 
 }

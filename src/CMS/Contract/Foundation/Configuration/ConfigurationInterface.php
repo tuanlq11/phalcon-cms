@@ -54,4 +54,9 @@ interface ConfigurationInterface
      */
     public function setName($name);
 
+    /**
+     * @return mixed
+     */
+    public function get($index, $default = null);
+
 }

@@ -30,7 +30,10 @@ class Application extends ApplicationAbstract
 
         $this->loadBaseConfiguration();
 
-        $this->loadCacheInstance();
+        /** Base Service */
+        $this->cache();
+        $this->session();
+        /** End */
     }
 
     /**
@@ -64,35 +67,21 @@ class Application extends ApplicationAbstract
     /**
      * Register new service for application
      *
-     * @param $name     string
-     * @param $callback \Closure
-     *
      * @return Application
      */
-    public function register($name, $callback)
+    public function register()
     {
-        if (($di = $this->factoryDefault())) {
-            $di->set($name, $callback);
-        }
-
-        return $this;
+        /** TODO: Coding */
     }
 
     /**
      * Register new service shared for application
      *
-     * @param $name     string
-     * @param $callback \Closure
-     *
      * @return Application
      */
-    public function registerShared($name, $callback)
+    public function registerShared()
     {
-        if (($di = $this->factoryDefault())) {
-            $di->setShared($name, $callback);
-        }
-
-        return $this;
+        /** TODO: Coding */
     }
 
     /**
@@ -117,32 +106,30 @@ class Application extends ApplicationAbstract
     /**
      * Load cache instance
      *
-     * @return void
+     * @return CacheManager
      */
-    function loadCacheInstance()
+    function cache()
     {
-        $this->cache = new CacheManager();
-        $this->cache->create($this->configuration[static::PREFIX_KERNEL_CONFIG]["cache"]);
+        if (is_null($this->cache)) {
+            $this->cache = new CacheManager();
+            $this->cache->create($this->configuration[static::PREFIX_KERNEL_CONFIG]["cache"]);
+
+            foreach ($this->cache as $name => $c) {
+                $this->bindService($name, $c);
+            }
+        }
+
+        return $this->cache;
     }
 
     /**
      * Load base/kernel configuration at first
      *
      */
-    public function loadBaseConfiguration()
+    function loadBaseConfiguration()
     {
         $this->configuration = new ConfigurationManager($this->basePath);
         $this->configuration->create($this->baseConfigurationSchema);
-    }
-
-    /**
-     * Register base service: [session, db, router, view, response]
-     *
-     * @return void
-     */
-    function registerBaseService()
-    {
-
     }
 
     /**
@@ -150,14 +137,22 @@ class Application extends ApplicationAbstract
      *
      * @return Session
      */
-    function loadSession()
+    function session()
     {
         if (is_null($this->session)) {
-//            $config =
+            $config        = $this->configuration[static::PREFIX_APP_CONFIG];
             $this->session = new Session(
-//                $this->configuration[static::PREFIX_KERNEL_CONFIG]->
+                $config->get("adapter", Session::ADAPTER_FILE),
+                $config->get("name", "cms"),
+                $config->get("option", []),
+                $config->get("autostart", true),
+                $config->get("enabled", true)
             );
+
+            $this->bindService($this->session->getName(), $this->session);
         }
+
+        return $this->session;
     }
 
     /**
@@ -165,7 +160,7 @@ class Application extends ApplicationAbstract
      *
      * @return Router
      */
-    function loadRouter()
+    function router()
     {
         // TODO: Implement loadRouter() method.
     }

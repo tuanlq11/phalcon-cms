@@ -1,9 +1,9 @@
 <?php
 namespace CMS\Contract\Foundation\Cache;
 
-use ArrayAccess;
+use ArrayAccess, Iterator;
 
-abstract class CacheManagerAbstract implements CacheManagerInterface, ArrayAccess
+abstract class CacheManagerAbstract implements CacheManagerInterface, ArrayAccess, Iterator
 {
     /**
      * @var array
@@ -49,6 +49,42 @@ abstract class CacheManagerAbstract implements CacheManagerInterface, ArrayAcces
         unset($this->caches[$offset]);
 
         return $this;
+    }
+
+    /**
+     * @return CacheInterface
+     */
+    public function current()
+    {
+        return current($this->caches);
+    }
+
+    /**
+     * @return CacheInterface
+     */
+    public function next()
+    {
+        return next($this->caches);
+    }
+
+    /**
+     * @return string
+     */
+    public function key()
+    {
+        return key($this->caches);
+    }
+
+    public function valid()
+    {
+        $key = key($this->caches);
+
+        return ($key !== null && $key !== false);
+    }
+
+    public function rewind()
+    {
+        reset($this->caches);
     }
 
 
