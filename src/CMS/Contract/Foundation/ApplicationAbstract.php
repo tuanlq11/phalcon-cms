@@ -70,11 +70,10 @@ abstract class ApplicationAbstract implements ApplicationInterface
      * @var array
      */
     protected $baseConfigurationSchema = [
-        "name"     => ApplicationInterface::KERNEL_CONFIGURATION_NAME,
+        "name"     => "kernel",
         "file"     => "config/kernel.php",
         "driver"   => ConfigurationInterface::DRIVER_PHP,
         "lifetime" => null,
-        "class"    => KernelConfiguration::class,
     ];
 
     /**
