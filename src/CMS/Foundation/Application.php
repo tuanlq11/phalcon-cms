@@ -8,9 +8,10 @@ use CMS\Foundation\Cache\CacheManager;
 use CMS\Foundation\Session\Session;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
-use Phalcon\Mvc\Application as MvcApplication;
 use CMS\Contract\Foundation\ApplicationAbstract;
+use Phalcon\Http\ResponseInterface;
 use Phalcon\Mvc\Router;
+use CMS\Foundation\Mvc\Application as MvcApplication;
 
 class Application extends ApplicationAbstract
 {
@@ -72,7 +73,7 @@ class Application extends ApplicationAbstract
     function application()
     {
         if (is_null($this->application)) {
-            $this->application = new MvcApplication();
+            $this->application = new MvcApplication($this->di);
         }
 
         return $this->application;
@@ -95,11 +96,14 @@ class Application extends ApplicationAbstract
     /**
      * Handle request
      *
-     * @return void
+     * @return ResponseInterface
      */
     public function handle()
     {
-        $this->application()->handle();
+        /** Start session */
+        $this->session->handle();
+
+        return $this->application()->handle();
     }
 
     /**
