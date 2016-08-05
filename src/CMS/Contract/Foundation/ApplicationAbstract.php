@@ -6,6 +6,7 @@ use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Foundation\Application;
 use CMS\Foundation\Cache\Cache;
 use CMS\Foundation\Configuration\ConfigurationManager;
+use CMS\Foundation\Container\Container;
 use CMS\Foundation\Session\Session;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
@@ -75,9 +76,9 @@ abstract class ApplicationAbstract implements ApplicationInterface
     protected $appCache;
 
     /**
-     * @var array
+     * @var Container[]
      */
-    protected $services;
+    protected $containers;
 
     /**
      * Kernel schema
@@ -170,12 +171,13 @@ abstract class ApplicationAbstract implements ApplicationInterface
      *
      * @param $name
      * @param $service
+     * @param $shared bool
      *
      * @return void
      */
-    public function bindService($name, &$service)
+    public function bindService($name, &$service, $shared = false)
     {
-        $this->services[$name] = &$service;
+        $this->containers[$name] = new Container($name, $service, $shared);
     }
 
     /**
@@ -187,7 +189,7 @@ abstract class ApplicationAbstract implements ApplicationInterface
      */
     public function unbindService($name)
     {
-        unset($this->services[$name]);
+        unset($this->containers[$name]);
     }
 
 }

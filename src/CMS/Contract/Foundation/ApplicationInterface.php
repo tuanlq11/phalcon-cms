@@ -91,19 +91,13 @@ interface ApplicationInterface
     public function register();
 
     /**
-     * Register shared bind service
-     *
-     * @return mixed
-     */
-    public function registerShared();
-
-    /**
      * @param $name
      * @param $service
+     * @param $shared
      *
      * @return mixed
      */
-    public function bindService($name, &$service);
+    public function bindService($name, &$service, $shared = false);
 
     /**
      * @param $name

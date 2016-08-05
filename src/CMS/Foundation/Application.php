@@ -71,17 +71,11 @@ class Application extends ApplicationAbstract
      */
     public function register()
     {
-        /** TODO: Coding */
-    }
-
-    /**
-     * Register new service shared for application
-     *
-     * @return Application
-     */
-    public function registerShared()
-    {
-        /** TODO: Coding */
+        foreach ($this->containers as &$container) {
+            if ($container->isBooted()) continue;
+            $this->di->set($container->getName(), $container->getContent(), $container->isShared());
+            $container->setBooted(true);
+        }
     }
 
     /**
@@ -115,7 +109,10 @@ class Application extends ApplicationAbstract
             $this->cache->create($this->configuration[static::PREFIX_KERNEL_CONFIG]["cache"]);
 
             foreach ($this->cache as $name => $c) {
-                $this->bindService($name, $c);
+                $callback = function () use ($c) {
+                    return $c;
+                };
+                $this->bindService($name, $callback, true);
             }
         }
 
@@ -141,7 +138,7 @@ class Application extends ApplicationAbstract
     {
         if (is_null($this->session)) {
             $config        = $this->configuration[static::PREFIX_APP_CONFIG];
-            $this->session = new Session(
+            $this->session = $session = new Session(
                 $config->get("adapter", Session::ADAPTER_FILE),
                 $config->get("name", "cms"),
                 $config->get("option", []),
@@ -149,7 +146,10 @@ class Application extends ApplicationAbstract
                 $config->get("enabled", true)
             );
 
-            $this->bindService($this->session->getName(), $this->session);
+            $callback = function () use ($session) {
+                return $session;
+            };
+            $this->bindService($this->session->getName(), $callback, true);
         }
 
         return $this->session;
