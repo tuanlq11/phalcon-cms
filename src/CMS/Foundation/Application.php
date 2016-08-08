@@ -11,8 +11,8 @@ use CMS\Foundation\View\View;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
 use CMS\Contract\Foundation\ApplicationAbstract;
-use Phalcon\Mvc\Router;
 use CMS\Foundation\Mvc\Application as MvcApplication;
+use CMS\Foundation\Router\Router;
 
 class Application extends ApplicationAbstract
 {
@@ -247,7 +247,7 @@ class Application extends ApplicationAbstract
     function router()
     {
         if (is_null($this->router)) {
-            $this->router = new Router();
+            $this->router = new Router($this->module);
 
             $router   = &$this->router;
             $callback = function () use (&$router) {

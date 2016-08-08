@@ -32,7 +32,10 @@ class ModuleManager extends ModuleManagerAbstract
             $alias = array_get($module, "alias", $name);
 
             $this->module[$name] = new Module($name, $this->appPath, $alias);
-            $this->schema[$name] = [$this->module[$name]->bootstrap()];
+
+            $schema              = $this->module[$name]->bootstrap();
+            $schema["alias"]     = $alias;
+            $this->schema[$name] = $schema;
         }
     }
 
