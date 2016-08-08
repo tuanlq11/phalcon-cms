@@ -193,7 +193,7 @@ class Application extends ApplicationAbstract
             $config = $this->configuration[static::PREFIX_MODULE_CONFIG];
 
             /** Default Skeleton Module */
-            $config["KernelSkeleton"] = [
+            $config[static::KERNEL_SKELETON] = [
                 "className" => Bootstrap::class,
                 "path"      => realpath(__DIR__ . "/../Skeleton/Bootstrap.php"),
             ];
