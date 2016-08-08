@@ -6,7 +6,8 @@ use CMS\Contract\Foundation\Configuration\ConfigurationManagerInterface;
 
 interface ModuleInterface
 {
-    const MODULE_CONFIG_PATH = "config";
+    const MODULE_BOOTSTRAP   = "Bootstrap.php";
+    const MODULE_CONFIG_PATH = "Config";
 
     /**
      * ModuleInterface constructor.
@@ -14,8 +15,9 @@ interface ModuleInterface
      * @param $name
      * @param $appPath
      * @param $application ApplicationInterface
+     * @param $alias       string
      */
-    public function __construct($name, $appPath, ApplicationInterface &$application = null);
+    public function __construct($name, $appPath, $alias, ApplicationInterface &$application = null);
 
     /**
      * @return ConfigurationManagerInterface

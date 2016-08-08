@@ -13,6 +13,9 @@ interface ModuleManagerInterface
      */
     public function __construct($appPath, Configuration &$config);
 
+    /**
+     * @return mixed
+     */
     public function loadModuleSchema();
 
 }

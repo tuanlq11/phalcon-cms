@@ -2,6 +2,7 @@
 namespace CMS\Foundation\Module;
 
 use CMS\Contract\Foundation\Module\ModuleManagerAbstract;
+use CMS\Foundation\Application;
 use CMS\Foundation\Configuration\Configuration;
 
 class ModuleManager extends ModuleManagerAbstract
@@ -15,15 +16,21 @@ class ModuleManager extends ModuleManagerAbstract
     public function __construct($appPath, Configuration &$config)
     {
         $this->appPath = $appPath;
-        $this->config = &$config;
+        $this->config  = &$config;
     }
 
     /**
      * Load Module Schema from module.yaml
      *
+     * @return void
      */
     public function loadModuleSchema()
     {
-        print_r($this->config->toArray());
+        foreach ($this->config->toArray() as $name => $module) {
+            if (array_get($module, "disabled", false)) continue;
+            $alias = array_get($module, "alias", $name);
+
+            $this->module[$name] = new Module($name, $this->appPath, $alias);
+        }
     }
 }

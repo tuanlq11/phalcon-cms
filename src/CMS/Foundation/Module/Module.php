@@ -5,6 +5,7 @@ use CMS\Contract\Foundation\ApplicationInterface;
 use CMS\Contract\Foundation\Configuration\ConfigurationAbstract;
 use CMS\Contract\Foundation\Configuration\ConfigurationManagerInterface;
 use CMS\Contract\Foundation\Module\ModuleAbstract;
+use CMS\Foundation\Application;
 use CMS\Foundation\Configuration\ConfigurationManager;
 
 class Module extends ModuleAbstract
@@ -15,12 +16,19 @@ class Module extends ModuleAbstract
      * @param $name
      * @param $appPath
      * @param $application ApplicationInterface
+     * @param $alias       string
      */
-    public function __construct($name, $appPath, ApplicationInterface &$application = null)
+    public function __construct($name, $appPath, $alias, ApplicationInterface &$application = null)
     {
-        $this->application = &$application;
-        $this->name        = $name;
-        $this->appPath     = rtrim($appPath, '\/');
+        if (is_null($application)) {
+            $this->application = &Application::getInstance();
+        } else {
+            $this->application = &$application;
+        };
+
+        $this->alias   = $alias;
+        $this->name    = $name;
+        $this->appPath = rtrim($appPath, '\/');
 
         $this->moduleConfigLifetime = $this->application->getConfigurations()["module"]->get("config_lifetime");
         $this->configurationPrefix  = $this->configuration_prefix = $this->appPath . $this->name;

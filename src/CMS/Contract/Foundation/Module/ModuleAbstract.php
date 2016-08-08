@@ -31,6 +31,9 @@ abstract class ModuleAbstract implements ModuleInterface
     protected $name;
 
     /** @var  string */
+    protected $alias;
+
+    /** @var  string */
     protected $configurationPrefix;
 
     /** @var  string */
@@ -38,6 +41,13 @@ abstract class ModuleAbstract implements ModuleInterface
 
     /** @var int|null */
     protected $moduleConfigLifetime;
+
+    /**
+     * Module Attribute
+     *
+     * @var $attr array
+     */
+    protected $attr = [];
 
     /** @var array */
     protected $structure = [
