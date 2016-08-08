@@ -204,7 +204,8 @@ class Application extends ApplicationAbstract
     function session()
     {
         if (is_null($this->session)) {
-            $config        = $this->configuration[static::PREFIX_APP_CONFIG];
+            $config = $this->configuration[static::PREFIX_APP_CONFIG]->get("session", []);
+
             $this->session = $session = new Session(
                 $config->get("adapter", Session::ADAPTER_FILE),
                 $config->get("name", "cms"),
