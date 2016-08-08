@@ -41,7 +41,7 @@ class Configuration extends ConfigurationAbstract
      */
     public function toArray()
     {
-        return $this->config->toArray();
+        return $this->arr_config;
     }
 
     /**

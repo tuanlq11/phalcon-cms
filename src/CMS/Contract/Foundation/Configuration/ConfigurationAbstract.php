@@ -88,6 +88,7 @@ abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAcc
     public function offsetSet($offset, $value)
     {
         $this->arr_config[$offset] = $value;
+        $this->config->offsetSet($offset, $value);
     }
 
     /**
@@ -98,6 +99,7 @@ abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAcc
     public function offsetUnset($offset)
     {
         unset($this->arr_config[$offset]);
+        $this->config->offsetUnset($offset);
     }
 
 
