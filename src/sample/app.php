@@ -13,4 +13,5 @@ return [
         "enabled"   => true,
     ],
 
+    "exception" => \CMS\Plugin\Exception::class,
 ];

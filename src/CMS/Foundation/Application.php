@@ -9,6 +9,7 @@ use CMS\Foundation\Module\ModuleManager;
 use CMS\Foundation\Mvc\Dispatcher;
 use CMS\Foundation\Session\Session;
 use CMS\Foundation\View\View;
+use CMS\Skeleton\Bootstrap;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
 use CMS\Contract\Foundation\ApplicationAbstract;
@@ -187,10 +188,19 @@ class Application extends ApplicationAbstract
         $this->configuration->create($this->moduleConfigurationSchema);
 
         if (is_null($this->module)) {
+            $config = $this->configuration[static::PREFIX_MODULE_CONFIG];
+
+            /** Default Skeleton Module */
+            $config["KernelSkeleton"] = [
+                "className" => Bootstrap::class,
+                "path"      => __DIR__ . "/../Skeleton/Bootstrap.php",
+            ];
+            /** End */
+
             $this->module = new ModuleManager(
                 $this->basePath,
                 $this->configuration["kernel"]->get("app_dir", "app"),
-                $this->configuration[static::PREFIX_MODULE_CONFIG]
+                $config
             );
 
             $this->module->loadModuleSchema();
