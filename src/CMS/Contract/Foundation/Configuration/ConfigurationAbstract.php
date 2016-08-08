@@ -18,6 +18,11 @@ abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAcc
     protected $config;
 
     /**
+     * @var array
+     */
+    protected $arr_config;
+
+    /**
      * @var string
      */
     protected $file;
@@ -61,7 +66,7 @@ abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAcc
      */
     public function offsetExists($offset)
     {
-        return isset($this->config[$offset]);
+        return isset($this->arr_config[$offset]);
     }
 
     /**
@@ -71,7 +76,7 @@ abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAcc
      */
     public function offsetGet($offset)
     {
-        return $this->config[$offset];
+        return $this->arr_config[$offset];
     }
 
     /**
@@ -82,7 +87,7 @@ abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAcc
      */
     public function offsetSet($offset, $value)
     {
-        $this->config[$offset] = $value;
+        $this->arr_config[$offset] = $value;
     }
 
     /**
@@ -92,7 +97,7 @@ abstract class ConfigurationAbstract implements ConfigurationInterface, ArrayAcc
      */
     public function offsetUnset($offset)
     {
-        unset($this->config[$offset]);
+        unset($this->arr_config[$offset]);
     }
 
 
