@@ -251,6 +251,8 @@ class Application extends ApplicationAbstract
 
             $router   = &$this->router;
             $callback = function () use (&$router) {
+                $router->init();
+
                 return $router;
             };
             $this->bindService(static::ROUTER_SERVICE_NAME, $callback, true);
