@@ -5,6 +5,7 @@ namespace CMS\Foundation;
 use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Cache\CacheManager;
+use CMS\Foundation\Module\ModuleManager\ModuleManager;
 use CMS\Foundation\Session\Session;
 use CMS\Foundation\View\View;
 use Dotenv\Dotenv;
@@ -183,6 +184,11 @@ class Application extends ApplicationAbstract
                                                            ->get("module", ["schema_lifetime" => null])["schema_lifetime"];
 
         $this->configuration->create($this->moduleConfigurationSchema);
+
+        if (is_null($this->module)) {
+            $this->module = new ModuleManager(
+                $this->basePath . DIRECTORY_SEPARATOR . trim($this->configuration["kernel"]->get("app_dir", "app")), '\/');
+        }
     }
 
     /**

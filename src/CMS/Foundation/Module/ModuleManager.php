@@ -14,6 +14,7 @@ class ModuleManager extends ModuleManagerAbstract
     public function __construct($appPath)
     {
         $this->appPath = $appPath;
+        print_r($appPath); exit;
     }
 
     /**
