@@ -28,9 +28,10 @@ class ModuleManager extends ModuleManagerAbstract
     {
         foreach ($this->config->toArray() as $name => $module) {
             if (array_get($module, "disabled", false)) continue;
+            $name  = Str::studly($name);
             $alias = array_get($module, "alias", $name);
 
-            $this->module[$name] = new Module(Str::studly($name), $this->appPath, $alias);
+            $this->module[$name] = new Module($name, $this->appPath, $alias);
             $this->schema[$name] = [$this->module[$name]->bootstrap()];
         }
     }
