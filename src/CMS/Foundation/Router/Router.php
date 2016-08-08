@@ -47,8 +47,9 @@ class Router extends \Phalcon\Mvc\Router
                     $module       = $this->module[$moduleName];
                     $routerConfig = $module->configuration()->get("router", []);
 
-                    foreach ($routerConfig as $route) {
+                    foreach ($routerConfig->toArray() as $route) {
                         $this->add($route["pattern"], [
+                            "module"     => $module->name(),
                             "namespace"  => array_get($route, "namespace", $module->nsController()),
                             "action"     => $route["action"],
                             "controller" => $route["controller"],
