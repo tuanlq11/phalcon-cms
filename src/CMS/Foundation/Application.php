@@ -285,4 +285,13 @@ class Application extends ApplicationAbstract
             }
         }
     }
+
+    /**
+     * @return string
+     */
+    public function environment()
+    {
+        return $this->environment;
+    }
+
 }

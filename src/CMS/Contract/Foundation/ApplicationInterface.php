@@ -164,7 +164,14 @@ interface ApplicationInterface
     public function cache_default();
 
     /**
+     * @return string
+     */
+    public function environment();
+
+
+    /**
      * @return void
      */
     function initKernel();
+
 }

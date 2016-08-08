@@ -1,12 +1,12 @@
 <?php
 namespace CMS\Contract\Foundation\Module;
 
-use CMS\Contract\Foundation\ApplicationInterface;
 use CMS\Contract\Foundation\Configuration\ConfigurationManagerInterface;
+use CMS\Foundation\Application;
 
 abstract class ModuleAbstract implements ModuleInterface
 {
-    /** @var  ApplicationInterface */
+    /** @var  Application */
     protected $application;
 
     /** @var  string */

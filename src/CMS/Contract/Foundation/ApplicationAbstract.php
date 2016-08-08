@@ -35,7 +35,7 @@ abstract class ApplicationAbstract implements ApplicationInterface
     /**
      * @var string
      */
-    protected $environment = "dev";
+    protected $environment = "development";
 
     /**
      * @var string
