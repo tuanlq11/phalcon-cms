@@ -5,7 +5,7 @@ namespace CMS\Foundation;
 use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Cache\CacheManager;
-use CMS\Foundation\Module\ModuleManager\ModuleManager;
+use CMS\Foundation\Module\ModuleManager;
 use CMS\Foundation\Session\Session;
 use CMS\Foundation\View\View;
 use Dotenv\Dotenv;

@@ -1,5 +1,5 @@
 <?php
-namespace CMS\Foundation\Module\ModuleManager;
+namespace CMS\Foundation\Module;
 
 use CMS\Contract\Foundation\Module\ModuleManagerAbstract;
 use CMS\Foundation\Configuration\Configuration;
@@ -14,7 +14,8 @@ class ModuleManager extends ModuleManagerAbstract
     public function __construct($appPath)
     {
         $this->appPath = $appPath;
-        print_r($appPath); exit;
+        print_r($appPath);
+        exit;
     }
 
     /**
