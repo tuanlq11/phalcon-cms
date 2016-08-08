@@ -102,4 +102,17 @@ class ConfigurationManager extends ConfigurationManagerAbstract
 
         $this->configurations[$name] = $configuration;
     }
+
+    /**
+     * @param      $name
+     * @param null $default
+     *
+     * @return Configuration
+     */
+    public function get($name, $default = null)
+    {
+        if (isset($this->configurations[$name])) return $this->configurations[$name];
+
+        return $default;
+    }
 }

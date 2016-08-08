@@ -51,6 +51,14 @@ interface ConfigurationManagerInterface
     public function remove($name);
 
     /**
+     * @param $name
+     * @param $default
+     *
+     * @return mixed
+     */
+    public function get($name, $default = null);
+
+    /**
      * Check entity is cached
      *
      * @param $name
@@ -88,6 +96,5 @@ interface ConfigurationManagerInterface
      * @return mixed
      */
     function path($file);
-
 
 }

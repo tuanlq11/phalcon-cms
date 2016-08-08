@@ -45,7 +45,9 @@ class Router extends \Phalcon\Mvc\Router
                 $moduleName = Str::studly($separated[1]);
                 if (isset($this->module[$moduleName])) {
                     $module = $this->module[$moduleName];
-                    $module->configuration();
+                    $routerConfig = $module->configuration()->get("router", []);
+
+                    print_r($routerConfig); exit;
                 }
             }
 

@@ -124,7 +124,7 @@ class Module extends ModuleAbstract
                     if (!isset(ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]])) continue;
 
                     $schema = [
-                        "name"     => $file,
+                        "name"     => $separate[0],
                         "file"     => $this->configPath() . DIRECTORY_SEPARATOR . $file,
                         "driver"   => ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]],
                         "lifetime" => null,
