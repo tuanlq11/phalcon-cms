@@ -119,6 +119,11 @@ interface ApplicationInterface
     public function register();
 
     /**
+     * @return void
+     */
+    function bindBaseService();
+
+    /**
      * @param $name
      * @param $service
      * @param $shared

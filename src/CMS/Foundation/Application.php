@@ -53,11 +53,8 @@ class Application extends ApplicationAbstract
         $this->application();
 
         /** Base Service */
-        $this->cache();
-        $this->session();
-        $this->view();
-        /** End */
-
+        $this->bindBaseService();
+        
         $this->register();
     }
 
@@ -254,5 +251,17 @@ class Application extends ApplicationAbstract
         }
 
         return $this->cache_default;
+    }
+
+    /**
+     * @return void
+     */
+    function bindBaseService()
+    {
+        foreach (["cache", "session", "view", "router", "url", "db"] as $service) {
+            if (method_exists($this, $service)) {
+                $this->$service();
+            }
+        }
     }
 }
