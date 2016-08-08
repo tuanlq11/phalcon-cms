@@ -2,9 +2,12 @@
 namespace CMS\Foundation\Router;
 
 use CMS\Foundation\Module\ModuleManager;
+use CMS\Helper\Str;
 
 class Router extends \Phalcon\Mvc\Router
 {
+    /** @var  bool */
+    protected $handled = false;
     /** @var  ModuleManager */
     protected $module;
 
@@ -22,15 +25,35 @@ class Router extends \Phalcon\Mvc\Router
 
 
     /**
-     * @return void
+     * @param null $uri
      */
-    public function init()
+    public function handle($uri = null)
     {
-        foreach ($this->module->schema() as $name => $module) {
-            $alias = strtolower($module["alias"]);
-            $this->add("/{$alias}(/)?", [
-                "module" => $name,
-            ]);
+        if (!$this->handled) {
+            $realUri = empty($uri) ? $this->getRewriteUri() : $uri;
+
+            if ($this->_removeExtraSlashes && $realUri != "/") {
+                $handledUri = rtrim($realUri, "/");
+            } else {
+                $handledUri = $realUri;
+            }
+
+            $separated = explode("/", $handledUri);
+
+            /** Dynamic load module by uri */
+            if (count($separated) > 2) {
+                $moduleName = Str::studly($separated[1]);
+                if (isset($this->module[$moduleName])) {
+                    $module = $this->module[$moduleName];
+                    $module->configuration();
+                }
+            }
+
+            $this->handled = true;
+            $this->handle($uri);
+        } else {
+            parent::handle($uri);
         }
     }
+
 }
