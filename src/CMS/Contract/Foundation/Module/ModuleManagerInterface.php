@@ -8,10 +8,11 @@ interface ModuleManagerInterface
     /**
      * ModuleManagerInterface constructor.
      *
-     * @param $appPath
+     * @param $basePath
+     * @param $appDir
      * @param $config
      */
-    public function __construct($appPath, Configuration &$config);
+    public function __construct($basePath, $appDir, Configuration &$config);
 
     /**
      * @return mixed

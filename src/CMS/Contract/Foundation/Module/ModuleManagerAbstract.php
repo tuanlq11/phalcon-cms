@@ -8,7 +8,9 @@ use ArrayAccess;
 abstract class ModuleManagerAbstract implements ModuleManagerInterface, ArrayAccess
 {
     /** @var  string */
-    protected $appPath;
+    protected $basePath;
+    /** @var  string */
+    protected $appDir;
 
     /** @var  Module[] */
     protected $module = [];

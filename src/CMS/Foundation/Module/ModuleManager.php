@@ -10,13 +10,15 @@ class ModuleManager extends ModuleManagerAbstract
     /**
      * ModuleManager constructor.
      *
-     * @param $appPath
+     * @param $basePath
+     * @param $appDir string
      * @param $config Configuration
      */
-    public function __construct($appPath, Configuration &$config)
+    public function __construct($basePath, $appDir, Configuration &$config)
     {
-        $this->appPath = $appPath;
-        $this->config  = &$config;
+        $this->basePath = $basePath;
+        $this->appDir   = $appDir;
+        $this->config   = &$config;
     }
 
     /**
@@ -31,7 +33,7 @@ class ModuleManager extends ModuleManagerAbstract
             $name  = Str::studly($name);
             $alias = array_get($module, "alias", $name);
 
-            $this->module[$name] = new Module($name, $this->appPath, $alias);
+            $this->module[$name] = new Module($name, $this->basePath, $this->appDir, $alias);
 
             $schema              = $this->module[$name]->bootstrap();
             $schema["alias"]     = $alias;

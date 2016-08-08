@@ -10,7 +10,10 @@ abstract class ModuleAbstract implements ModuleInterface
     protected $application;
 
     /** @var  string */
-    protected $appPath;
+    protected $basePath;
+
+    /** @var  string */
+    protected $appDir;
 
     /** @var  string */
     protected $prefixNamespace;

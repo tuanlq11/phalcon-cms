@@ -187,7 +187,8 @@ class Application extends ApplicationAbstract
 
         if (is_null($this->module)) {
             $this->module = new ModuleManager(
-                $this->basePath . DIRECTORY_SEPARATOR . trim($this->configuration["kernel"]->get("app_dir", "app"), '\/'),
+                $this->basePath,
+                $this->configuration["kernel"]->get("app_dir", "app"),
                 $this->configuration[static::PREFIX_MODULE_CONFIG]
             );
 

@@ -13,11 +13,12 @@ interface ModuleInterface
      * ModuleInterface constructor.
      *
      * @param $name
-     * @param $appPath
+     * @param $basePath
+     * @param $appDir
      * @param $application ApplicationInterface
      * @param $alias       string
      */
-    public function __construct($name, $appPath, $alias, ApplicationInterface &$application = null);
+    public function __construct($name, $basePath, $appDir, $alias, ApplicationInterface &$application = null);
 
     /**
      * @return ConfigurationManagerInterface

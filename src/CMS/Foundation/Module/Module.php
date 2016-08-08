@@ -14,11 +14,12 @@ class Module extends ModuleAbstract
      * Module constructor.
      *
      * @param $name
-     * @param $appPath
+     * @param $basePath
+     * @param $appDir
      * @param $application ApplicationInterface
      * @param $alias       string
      */
-    public function __construct($name, $appPath, $alias, ApplicationInterface &$application = null)
+    public function __construct($name, $basePath, $appDir, $alias, ApplicationInterface &$application = null)
     {
         if (is_null($application)) {
             $this->application = &Application::getInstance();
@@ -26,13 +27,14 @@ class Module extends ModuleAbstract
             $this->application = &$application;
         };
 
-        $this->alias   = $alias;
-        $this->name    = $name;
-        $this->appPath = rtrim($appPath, '\/');
+        $this->alias    = $alias;
+        $this->name     = $name;
+        $this->basePath = rtrim($this->basePath, '\/');
+        $this->appDir   = trim($this->appDir, '\/');
 
         $this->moduleConfigLifetime = $this->application->getConfigurations()["module"]->get("config_lifetime");
         $this->prefixNamespace      = $this->application->getConfigurations()[Application::PREFIX_KERNEL_CONFIG]->get("app_namespace", "App");
-        $this->configurationPrefix  = $this->appPath . $this->name;
+        $this->configurationPrefix  = $this->basePath . $this->name;
         $this->cachePrefix          = "cache:module:configuration:" . md5($this->configurationPrefix);
     }
 
@@ -44,10 +46,10 @@ class Module extends ModuleAbstract
     public function path($absolute = false)
     {
         if ($absolute) {
-            return rtrim($this->appPath . DIRECTORY_SEPARATOR . $this->name, '\/');
+            return rtrim($this->basePath . DIRECTORY_SEPARATOR . $this->appDir . DIRECTORY_SEPARATOR . $this->name, '\/');
         }
 
-        return rtrim($this->name, '\/');
+        return rtrim($this->appDir . DIRECTORY_SEPARATOR . $this->name, '\/');
     }
 
     /**
