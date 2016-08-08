@@ -45,7 +45,6 @@ class Application extends ApplicationAbstract
 
         /** Module Loader */
         $this->loadModuleConfig();
-        print_r($this->module->schema()); exit;
         /** End */
 
         /** Init Factory Default Instance */
