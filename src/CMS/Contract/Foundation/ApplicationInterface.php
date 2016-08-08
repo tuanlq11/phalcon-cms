@@ -32,6 +32,11 @@ interface ApplicationInterface
     /** Default view DIR */
     const VIEW_DEFAULT = "resource/view";
 
+    const ENV_PROD    = "production";
+    const ENV_DEV     = "development";
+    const ENV_TEST    = "test";
+    const ENV_STAGING = "staging";
+
     /**
      * ApplicationInterface constructor.
      *

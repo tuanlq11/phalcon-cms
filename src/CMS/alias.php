@@ -40,7 +40,7 @@ function env($key, $default)
 /**
  * @return \CMS\Foundation\Application
  */
-function app()
+function &app()
 {
     return \CMS\Foundation\Application::getInstance();
 }

@@ -109,7 +109,7 @@ class Module extends ModuleAbstract
     public function configuration()
     {
         if (is_null($this->configuration)) {
-            if ($this->application->environment() == "production" &&
+            if ($this->application->environment() == Application::ENV_PROD &&
                 $this->application->cache_default()->exists($this->cachePrefix)
             ) {
                 /** Load Configuration From Cache */
@@ -135,7 +135,7 @@ class Module extends ModuleAbstract
                 }
                 /** End */
 
-                if ($this->application->environment() == "production") {
+                if ($this->application->environment() == Application::ENV_PROD) {
                     $this->application->cache_default()->save($this->cachePrefix, $this->configuration);
                 }
             }

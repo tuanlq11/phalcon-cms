@@ -3,6 +3,7 @@ namespace CMS\Foundation\Configuration;
 
 use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Contract\Foundation\Configuration\ConfigurationManagerAbstract as ConfigurationManagerAbstract;
+use CMS\Foundation\Mvc\Application;
 
 class ConfigurationManager extends ConfigurationManagerAbstract
 {
@@ -58,7 +59,7 @@ class ConfigurationManager extends ConfigurationManagerAbstract
         } else {
             if ($this->exists($name)) return false;
 
-            if ($lifetime) {
+            if ($lifetime && app()->environment() == app()::ENV_PROD) {
                 if ($this->is_cached($name)) {
                     /** @var ConfigurationInterface $configuration */
                     $configuration = $this->get_cached($name, $lifetime);
@@ -66,6 +67,7 @@ class ConfigurationManager extends ConfigurationManagerAbstract
                     /** @var ConfigurationInterface $configuration */
                     $configuration = new $class($this->path($file), $name, $driver, $lifetime);
                     $configuration->load();
+
                     $this->save($name, $configuration, $lifetime);
                 }
             } else {
