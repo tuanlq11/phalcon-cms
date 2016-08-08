@@ -2,6 +2,7 @@
 namespace CMS\Plugin;
 
 use CMS\Foundation\Mvc\Dispatcher;
+use CMS\Skeleton\Controller\ErrorController;
 use Phalcon\Events\Event;
 
 class Exception
@@ -9,7 +10,7 @@ class Exception
     public function beforeException(Event $event, Dispatcher $dispatcher, $exception)
     {
         $dispatcher->forward([
-            "module"     => app()::KERNEL_SKELETON,
+            "namespace"  => "CMS\Skeleton\Controller",
             "controller" => "error",
             "action"     => "default",
         ]);

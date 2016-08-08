@@ -192,13 +192,6 @@ class Application extends ApplicationAbstract
         if (is_null($this->module)) {
             $config = $this->configuration[static::PREFIX_MODULE_CONFIG];
 
-            /** Default Skeleton Module */
-            $config[static::KERNEL_SKELETON] = [
-                "className" => Bootstrap::class,
-                "path"      => realpath(__DIR__ . "/../Skeleton/Bootstrap.php"),
-            ];
-            /** End */
-
             $this->module = new ModuleManager(
                 $this->basePath,
                 $this->configuration["kernel"]->get("app_dir", "app"),

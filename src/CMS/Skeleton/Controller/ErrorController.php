@@ -3,13 +3,10 @@ namespace CMS\Skeleton\Controller;
 
 use CMS\Foundation\Mvc\Controller;
 
-class Error extends Controller
+class ErrorController extends Controller
 {
-    /**
-     *
-     */
     public function defaultAction()
     {
-
+        
     }
 }

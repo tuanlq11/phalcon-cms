@@ -37,8 +37,6 @@ interface ApplicationInterface
     const ENV_TEST    = "test";
     const ENV_STAGING = "staging";
 
-    const KERNEL_SKELETON = "KernelSkeleton";
-
     /**
      * ApplicationInterface constructor.
      *
