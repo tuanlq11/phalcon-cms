@@ -25,9 +25,18 @@ interface ModuleInterface
     public function configuration();
 
     /**
-     * @return mixed
+     * @param $absolute bool
+     *
+     * @return string
      */
-    public function modulePath();
+    public function path($absolute = false);
+
+    /**
+     * @param $absolute bool
+     *
+     * @return string
+     */
+    public function configPath($absolute = false);
 
     /**
      * @return mixed
@@ -48,4 +57,5 @@ interface ModuleInterface
      * @return mixed
      */
     public function attr();
+
 }

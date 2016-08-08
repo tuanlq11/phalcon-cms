@@ -32,19 +32,38 @@ class Module extends ModuleAbstract
 
         $this->moduleConfigLifetime = $this->application->getConfigurations()["module"]->get("config_lifetime");
         $this->prefixNamespace      = $this->application->getConfigurations()[Application::PREFIX_KERNEL_CONFIG]->get("app_namespace", "App");
-        $this->configurationPrefix  = $this->configuration_prefix = $this->appPath . $this->name;
+        $this->configurationPrefix  = $this->appPath . $this->name;
         $this->cachePrefix          = "cache:module:configuration:" . md5($this->configurationPrefix);
-        $this->modulePath           = rtrim($this->appPath . DIRECTORY_SEPARATOR . $this->name, '\/');
-        $this->moduleConfigPath     = rtrim($this->modulePath . DIRECTORY_SEPARATOR . static::MODULE_CONFIG_PATH, '\/');
     }
 
     /**
+     * @param $absolute bool
+     *
      * @return string
      */
-    public function modulePath()
+    public function path($absolute = false)
     {
-        return $this->modulePath;
+        if ($absolute) {
+            return rtrim($this->appPath . DIRECTORY_SEPARATOR . $this->name, '\/');
+        }
+
+        return rtrim($this->name, '\/');
     }
+
+    /**
+     * @param bool $absolute
+     *
+     * @return string
+     */
+    public function configPath($absolute = false)
+    {
+        if ($absolute) {
+            return rtrim($this->path(true) . DIRECTORY_SEPARATOR . static::MODULE_CONFIG_PATH, '\/');
+        }
+
+        return rtrim($this->path(false) . DIRECTORY_SEPARATOR . static::MODULE_CONFIG_PATH, '\/');
+    }
+
 
     /**
      * @return array
@@ -53,7 +72,7 @@ class Module extends ModuleAbstract
     {
         return [
             "className" => $this->prefixNamespace . "\\" . $this->name . "\\Bootstrap",
-            "path"      => $this->modulePath . DIRECTORY_SEPARATOR . static::MODULE_BOOTSTRAP,
+            "path"      => $this->path(true) . DIRECTORY_SEPARATOR . static::MODULE_BOOTSTRAP,
         ];
     }
 
@@ -97,14 +116,14 @@ class Module extends ModuleAbstract
                 $this->configuration = new ConfigurationManager();
 
                 /** Scan dir config to load file */
-                foreach (scandir($this->moduleConfigPath) as $file) {
+                foreach (scandir($this->configPath(true)) as $file) {
                     if ($file == "." || $file == "..") continue;
                     $separate = explode(".", $file);
                     if (!isset(ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]])) continue;
 
                     $schema = [
                         "name"     => $file,
-                        "file"     => $this->moduleConfigPath . DIRECTORY_SEPARATOR . $file,
+                        "file"     => $this->configPath() . DIRECTORY_SEPARATOR . $file,
                         "driver"   => ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]],
                         "lifetime" => null,
                     ];
