@@ -116,4 +116,18 @@ class ConfigurationManager extends ConfigurationManagerAbstract
 
         return $default;
     }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        $result = [];
+        foreach ($this->configurations as $key => $configuration) {
+            $result[$key] = $configuration->toArray();
+        }
+
+        return $result;
+    }
+
 }

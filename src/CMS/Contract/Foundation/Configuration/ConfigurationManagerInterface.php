@@ -61,6 +61,11 @@ interface ConfigurationManagerInterface
     public function get($name, $default = null);
 
     /**
+     * @return array
+     */
+    public function toArray();
+
+    /**
      * Check entity is cached
      *
      * @param $name

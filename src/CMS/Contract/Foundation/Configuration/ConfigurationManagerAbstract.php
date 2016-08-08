@@ -15,7 +15,7 @@ abstract class ConfigurationManagerAbstract implements ConfigurationManagerInter
     public $prefix = "binary_kernel_configuration:";
 
     /**
-     * @var array
+     * @var Configuration[]
      */
     protected $configurations = [];
 
