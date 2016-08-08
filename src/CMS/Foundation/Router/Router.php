@@ -27,7 +27,8 @@ class Router extends \Phalcon\Mvc\Router
     public function init()
     {
         foreach ($this->module->schema() as $name => $module) {
-            $this->add("/{$module["alias"]}(/)?", [
+            $alias = strtolower($module["alias"]);
+            $this->add("/{$alias}(/)?", [
                 "module" => $name,
             ]);
         }
