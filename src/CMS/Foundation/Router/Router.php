@@ -44,10 +44,16 @@ class Router extends \Phalcon\Mvc\Router
             if (count($separated) > 2) {
                 $moduleName = Str::studly($separated[1]);
                 if (isset($this->module[$moduleName])) {
-                    $module = $this->module[$moduleName];
+                    $module       = $this->module[$moduleName];
                     $routerConfig = $module->configuration()->get("router", []);
 
-                    print_r($routerConfig); exit;
+                    foreach ($routerConfig as $route) {
+                        $this->add($route["pattern"], [
+                            "namespace"  => array_get($route, "namespace", $module->nsController()),
+                            "action"     => $route["action"],
+                            "controller" => $route["controller"],
+                        ], (array)$route["method"]);
+                    }
                 }
             }
 

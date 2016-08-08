@@ -6,8 +6,9 @@ use CMS\Contract\Foundation\Configuration\ConfigurationManagerInterface;
 
 interface ModuleInterface
 {
-    const MODULE_BOOTSTRAP   = "Bootstrap.php";
-    const MODULE_CONFIG_PATH = "Config";
+    const MODULE_BOOTSTRAP       = "Bootstrap.php";
+    const MODULE_CONFIG_PATH     = "Config";
+    const MODULE_CONTROLLER_PATH = "Controller";
 
     /**
      * ModuleInterface constructor.
@@ -58,5 +59,12 @@ interface ModuleInterface
      * @return mixed
      */
     public function attr();
+
+    /**
+     * Namespace
+     *
+     * @return string
+     */
+    public function nsController();
 
 }

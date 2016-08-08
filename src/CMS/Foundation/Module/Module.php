@@ -78,6 +78,7 @@ class Module extends ModuleAbstract
         ];
     }
 
+
     /**
      * @return string
      */
@@ -142,5 +143,14 @@ class Module extends ModuleAbstract
 
         return $this->configuration;
     }
+
+    /**
+     * @return string
+     */
+    public function nsController()
+    {
+        return $this->prefixNamespace . "\\" . $this->name . "\\" . static::MODULE_CONTROLLER_PATH;
+    }
+
 
 }
