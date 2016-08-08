@@ -6,6 +6,7 @@ use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Cache\CacheManager;
 use CMS\Foundation\Module\ModuleManager;
+use CMS\Foundation\Mvc\Dispatcher;
 use CMS\Foundation\Session\Session;
 use CMS\Foundation\View\View;
 use Dotenv\Dotenv;
@@ -281,7 +282,7 @@ class Application extends ApplicationAbstract
      */
     function bindBaseService()
     {
-        foreach (["cache", "session", "view", "router", "url", "db"] as $service) {
+        foreach (["cache", "session", "view", "router", "url", "db", "dispatcher"] as $service) {
             if (method_exists($this, $service)) {
                 $this->$service();
             }
@@ -295,5 +296,19 @@ class Application extends ApplicationAbstract
     {
         return $this->environment;
     }
+
+    /**
+     * @return void
+     */
+    function dispatcher()
+    {
+        $dispatcher = new Dispatcher();
+
+        $callback = function () use (&$dispatcher) {
+            return $dispatcher;
+        };
+        $this->bindService("dispatcher", $callback, true);
+    }
+
 
 }

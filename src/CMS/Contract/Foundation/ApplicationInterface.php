@@ -82,6 +82,11 @@ interface ApplicationInterface
     function view();
 
     /**
+     * @return void
+     */
+    function dispatcher();
+
+    /**
      * Set Base Path
      *
      * @param $basePath string
