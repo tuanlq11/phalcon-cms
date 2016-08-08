@@ -7,8 +7,7 @@ class ErrorController extends Controller
 {
     public function defaultAction($exception)
     {
-        print_r($exception); exit;
         $this->view->setViewsDir(__DIR__ . "/../View");
-
+        $this->view->exception = $exception;
     }
 }
