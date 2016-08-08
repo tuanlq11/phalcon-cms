@@ -52,7 +52,7 @@ class Module extends ModuleAbstract
     public function bootstrap()
     {
         return [
-            "className" => $this->prefixNamespace . "\\" . $this->name,
+            "className" => $this->prefixNamespace . "\\" . $this->name . "\\Bootstrap",
             "path"      => $this->modulePath . DIRECTORY_SEPARATOR . static::MODULE_BOOTSTRAP,
         ];
     }
