@@ -209,7 +209,7 @@ class Application extends ApplicationAbstract
             $this->session = $session = new Session(
                 $config->get("adapter", Session::ADAPTER_FILE),
                 $config->get("name", "cms"),
-                $config->get("option", []),
+                (array)$config->get("option", []),
                 $config->get("autostart", true),
                 $config->get("enabled", true)
             );
