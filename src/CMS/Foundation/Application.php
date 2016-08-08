@@ -9,12 +9,14 @@ use CMS\Foundation\Module\ModuleManager;
 use CMS\Foundation\Mvc\Dispatcher;
 use CMS\Foundation\Session\Session;
 use CMS\Foundation\View\View;
+use CMS\Plugin\Exception;
 use CMS\Skeleton\Bootstrap;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
 use CMS\Contract\Foundation\ApplicationAbstract;
 use CMS\Foundation\Mvc\Application as MvcApplication;
 use CMS\Foundation\Router\Router;
+use Phalcon\Events\Manager as EventManager;
 
 class Application extends ApplicationAbstract
 {
@@ -193,7 +195,7 @@ class Application extends ApplicationAbstract
             /** Default Skeleton Module */
             $config["KernelSkeleton"] = [
                 "className" => Bootstrap::class,
-                "path"      => __DIR__ . "/../Skeleton/Bootstrap.php",
+                "path"      => realpath(__DIR__ . "/../Skeleton/Bootstrap.php"),
             ];
             /** End */
 
@@ -312,9 +314,15 @@ class Application extends ApplicationAbstract
      */
     function dispatcher()
     {
-        $dispatcher = new Dispatcher();
-
         $callback = function () use (&$dispatcher) {
+            $dispatcher   = new Dispatcher();
+            $eventManager = new EventManager();
+
+            $class = app()->configuration[app()::PREFIX_APP_CONFIG]->get("exception", Exception::class);
+            $eventManager->attach("dispatch:beforeException", new $class());
+
+            $dispatcher->setEventsManager($eventManager);
+
             return $dispatcher;
         };
         $this->bindService("dispatcher", $callback, true);
