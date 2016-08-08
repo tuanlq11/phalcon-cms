@@ -10,14 +10,25 @@ interface ApplicationInterface
 {
     const VERSION = "2.0.0";
 
+    /** Kernel config name. Ex: kernel */
     const PREFIX_KERNEL_CONFIG = "kernel";
-    const PREFIX_APP_CONFIG    = "app";
+    /** App config name. EX: app */
+    const PREFIX_APP_CONFIG = "app";
+    /** Module schema config name. EX: module */
     const PREFIX_MODULE_CONFIG = "module";
 
+    /** Default session service name */
     const SESSION_SERVICE_NAME = "session";
+    /** Default view service name */
+    const VIEW_SERVICE_NAME = "view";
 
+    /** Default cache key config */
     const CACHE_DEFAULT_CONFIG_KEY = "cache_default";
-    const CACHE_DEFAULT            = "storage";
+    /** Default cache name if CACHE_DEFAULT_CONFIG_KEY is empty*/
+    const CACHE_DEFAULT = "storage";
+
+    /** Default view DIR */
+    const VIEW_DEFAULT = "resource/view";
 
     /**
      * ApplicationInterface constructor.
@@ -57,6 +68,11 @@ interface ApplicationInterface
      * Create cache instance for application
      */
     function cache();
+
+    /**
+     * @return mixed
+     */
+    function view();
 
     /**
      * Set Base Path

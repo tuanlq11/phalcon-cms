@@ -9,6 +9,7 @@ use CMS\Foundation\Cache\Cache;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Container\Container;
 use CMS\Foundation\Session\Session;
+use CMS\Foundation\View\View;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Loader;
 use Phalcon\Mvc\Application as MvcApplication;
@@ -65,6 +66,19 @@ abstract class ApplicationAbstract implements ApplicationInterface
      * @var Session
      */
     protected $session;
+
+    /**
+     * @var View
+     */
+    protected $view;
+
+    protected $db;
+
+    protected $url;
+
+    protected $response;
+
+    protected $dispatcher;
 
     /**
      * @var Router

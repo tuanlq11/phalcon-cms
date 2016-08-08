@@ -6,6 +6,7 @@ use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Cache\CacheManager;
 use CMS\Foundation\Session\Session;
+use CMS\Foundation\View\View;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
 use CMS\Contract\Foundation\ApplicationAbstract;
@@ -54,6 +55,7 @@ class Application extends ApplicationAbstract
         /** Base Service */
         $this->cache();
         $this->session();
+        $this->view();
         /** End */
 
         $this->register();
@@ -210,6 +212,25 @@ class Application extends ApplicationAbstract
         }
 
         return $this->session;
+    }
+
+    /**
+     * @return View
+     */
+    function view()
+    {
+        if (is_null($this->view)) {
+            $this->view = new View();
+            $this->view->setViewsDir($this->basePath . DIRECTORY_SEPARATOR . static::VIEW_DEFAULT);
+
+            $view     = &$this->view;
+            $callback = function () use (&$view) {
+                return $view;
+            };
+            $this->bindService(static::VIEW_SERVICE_NAME, $callback, true);
+        }
+
+        return $this->view;
     }
 
     /**
