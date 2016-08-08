@@ -1,0 +1,6 @@
+listing:
+  pattern: /user/listing
+  namespace: App\User\Controller
+  controller: index
+  action: listing
+  method: [GET]
