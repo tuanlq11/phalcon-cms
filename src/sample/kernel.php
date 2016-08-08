@@ -28,7 +28,7 @@ return [
 
     "default_cache" => "storage",
 
-    "module"  => [
+    "module"        => [
         /** Cache config/module.yml */
         "schema_lifetime" => 300,
         /** Cache app/{MODULE}/config/* */
@@ -36,6 +36,7 @@ return [
     ],
 
     /** APP_DIR */
-    "app_dir" => "app",
+    "app_dir"       => "app",
+    "app_namespace" => "App",
 
 ];

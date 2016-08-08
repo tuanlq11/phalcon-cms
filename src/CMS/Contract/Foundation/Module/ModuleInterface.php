@@ -24,4 +24,28 @@ interface ModuleInterface
      */
     public function configuration();
 
+    /**
+     * @return mixed
+     */
+    public function modulePath();
+
+    /**
+     * @return mixed
+     */
+    public function bootstrap();
+
+    /**
+     * @return mixed
+     */
+    public function name();
+
+    /**
+     * @return mixed
+     */
+    public function alias();
+
+    /**
+     * @return mixed
+     */
+    public function attr();
 }

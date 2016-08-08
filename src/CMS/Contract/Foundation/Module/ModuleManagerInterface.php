@@ -18,4 +18,9 @@ interface ModuleManagerInterface
      */
     public function loadModuleSchema();
 
+    /**
+     * @return mixed
+     */
+    public function schema();
+
 }

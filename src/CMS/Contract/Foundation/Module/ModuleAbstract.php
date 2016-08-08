@@ -18,6 +18,9 @@ abstract class ModuleAbstract implements ModuleInterface
     /** @var  string */
     protected $moduleConfigPath;
 
+    /** @var  string */
+    protected $prefixNamespace;
+
     /** @var  ConfigurationManagerInterface */
     protected $configuration;
 

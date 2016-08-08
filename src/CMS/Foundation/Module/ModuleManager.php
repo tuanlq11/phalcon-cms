@@ -2,7 +2,6 @@
 namespace CMS\Foundation\Module;
 
 use CMS\Contract\Foundation\Module\ModuleManagerAbstract;
-use CMS\Foundation\Application;
 use CMS\Foundation\Configuration\Configuration;
 
 class ModuleManager extends ModuleManagerAbstract
@@ -31,6 +30,15 @@ class ModuleManager extends ModuleManagerAbstract
             $alias = array_get($module, "alias", $name);
 
             $this->module[$name] = new Module($name, $this->appPath, $alias);
+            $this->schema[$name] = [$this->module[$name]->bootstrap()];
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function schema()
+    {
+        return $this->schema;
     }
 }

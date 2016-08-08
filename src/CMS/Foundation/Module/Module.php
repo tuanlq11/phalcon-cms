@@ -31,10 +31,54 @@ class Module extends ModuleAbstract
         $this->appPath = rtrim($appPath, '\/');
 
         $this->moduleConfigLifetime = $this->application->getConfigurations()["module"]->get("config_lifetime");
+        $this->prefixNamespace      = $this->application->getConfigurations()[Application::PREFIX_KERNEL_CONFIG]->get("app_namespace", "App");
         $this->configurationPrefix  = $this->configuration_prefix = $this->appPath . $this->name;
         $this->cachePrefix          = "cache:module:configuration:" . md5($this->configurationPrefix);
         $this->modulePath           = rtrim($this->appPath . DIRECTORY_SEPARATOR . $this->name, '\/');
         $this->moduleConfigPath     = rtrim($this->modulePath . DIRECTORY_SEPARATOR . static::MODULE_CONFIG_PATH, '\/');
+    }
+
+    /**
+     * @return string
+     */
+    public function modulePath()
+    {
+        return $this->modulePath;
+    }
+
+    /**
+     * @return array
+     */
+    public function bootstrap()
+    {
+        return [
+            "className" => $this->prefixNamespace . "\\" . $this->name,
+            "path"      => $this->modulePath . DIRECTORY_SEPARATOR . static::MODULE_BOOTSTRAP,
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    public function name()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function alias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @return array
+     */
+    public function attr()
+    {
+        return $this->attr;
     }
 
     /**
