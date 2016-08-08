@@ -65,7 +65,7 @@ class Application extends ApplicationAbstract
      *
      * @return Application
      */
-    public static function getInstance($basePath = null)
+    public static function &getInstance($basePath = null)
     {
         if (is_null(self::$instance)) {
             self::$instance = new Application($basePath);
