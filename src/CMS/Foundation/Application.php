@@ -28,10 +28,6 @@ class Application extends ApplicationAbstract
         $this->setBasePath($basePath);
 
         $this->initKernel();
-
-        /** Module Loader */
-        $this->loadModuleConfig();
-        /** End */
     }
 
     /**
@@ -47,6 +43,10 @@ class Application extends ApplicationAbstract
 
         $this->loadBaseConfiguration();
 
+        /** Module Loader */
+        $this->loadModuleConfig();
+        /** End */
+
         /** Init Factory Default Instance */
         $this->factoryDefault();
         /** Init MvcApplication */
@@ -54,7 +54,7 @@ class Application extends ApplicationAbstract
 
         /** Base Service */
         $this->bindBaseService();
-        
+
         $this->register();
     }
 
@@ -237,7 +237,17 @@ class Application extends ApplicationAbstract
      */
     function router()
     {
+        if (is_null($this->router)) {
+            $this->router = new Router();
 
+            $router   = &$this->router;
+            $callback = function () use (&$router) {
+                return $router;
+            };
+            $this->bindService(static::ROUTER_SERVICE_NAME, $callback, true);
+        }
+
+        return $this->router;
     }
 
     /**

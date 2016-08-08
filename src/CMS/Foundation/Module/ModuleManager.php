@@ -2,17 +2,27 @@
 namespace CMS\Foundation\Module\ModuleManager;
 
 use CMS\Contract\Foundation\Module\ModuleManagerAbstract;
+use CMS\Foundation\Configuration\Configuration;
 
 class ModuleManager extends ModuleManagerAbstract
 {
-    public function create($name, $appPath)
+    /**
+     * ModuleManager constructor.
+     *
+     * @param $appPath
+     */
+    public function __construct($appPath)
     {
-        // TODO: Implement create() method.
+        $this->appPath = $appPath;
     }
 
-    public function add($module)
+    /**
+     * Load Module Schema from module.yaml
+     *
+     * @param Configuration $config
+     */
+    public function loadModuleSchema(Configuration $config)
     {
-        // TODO: Implement add() method.
+        print_r($config->toArray());
     }
-
 }

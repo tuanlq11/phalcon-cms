@@ -8,6 +8,7 @@ use CMS\Foundation\Application;
 use CMS\Foundation\Cache\Cache;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Container\Container;
+use CMS\Foundation\Module\ModuleManager\ModuleManager;
 use CMS\Foundation\Session\Session;
 use CMS\Foundation\View\View;
 use Phalcon\Di\FactoryDefault;
@@ -79,6 +80,9 @@ abstract class ApplicationAbstract implements ApplicationInterface
     protected $response;
 
     protected $dispatcher;
+
+    /** @var  ModuleManager */
+    protected $module;
 
     /**
      * @var Router

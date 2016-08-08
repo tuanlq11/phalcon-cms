@@ -1,20 +1,17 @@
 <?php
 namespace CMS\Contract\Foundation\Module;
 
+use CMS\Foundation\Configuration\Configuration;
+
 interface ModuleManagerInterface
 {
     /**
-     * @param $name
+     * ModuleManagerInterface constructor.
+     *
      * @param $appPath
-     *
-     * @return array
      */
-    public function create($name, $appPath);
+    public function __construct($appPath);
 
-    /**
-     * @param $module
-     *
-     * @return ModuleInterface
-     */
-    public function add($module);
+    public function loadModuleSchema(Configuration $config);
+
 }

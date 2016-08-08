@@ -21,6 +21,8 @@ interface ApplicationInterface
     const SESSION_SERVICE_NAME = "session";
     /** Default view service name */
     const VIEW_SERVICE_NAME = "view";
+    /** Default router service name */
+    const ROUTER_SERVICE_NAME = "router";
 
     /** Default cache key config */
     const CACHE_DEFAULT_CONFIG_KEY = "cache_default";
