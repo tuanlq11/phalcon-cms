@@ -10,9 +10,10 @@ class Exception
     public function beforeException(Event $event, Dispatcher $dispatcher, $exception)
     {
         $dispatcher->forward([
-            "namespace"  => "CMS\Skeleton\Controller",
+            "namespace"  => "CMS\\Skeleton\\Controller",
             "controller" => "error",
             "action"     => "default",
+            "params"     => ["exception" => $exception],
         ]);
 
         return false;
