@@ -11,8 +11,8 @@ class Router extends \Phalcon\Mvc\Router
     /**
      * Router constructor.
      *
-     * @param bool $defaultRoutes
-     * @param      $module
+     * @param bool           $defaultRoutes
+     * @param  ModuleManager $module
      */
     public function __construct(&$module, $defaultRoutes = true)
     {

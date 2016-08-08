@@ -249,6 +249,7 @@ class Application extends ApplicationAbstract
     {
         if (is_null($this->router)) {
             $this->router = new Router($this->module);
+            $this->router->setUriSource(Router::URI_SOURCE_SERVER_REQUEST_URI);
 
             $router   = &$this->router;
             $callback = function () use (&$router) {
