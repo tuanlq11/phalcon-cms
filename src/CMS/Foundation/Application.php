@@ -97,6 +97,7 @@ class Application extends ApplicationAbstract
     {
         if (is_null($this->application)) {
             $this->application = new MvcApplication($this->di);
+            $this->application->registerModules($this->module->schema());
         }
 
         return $this->application;
