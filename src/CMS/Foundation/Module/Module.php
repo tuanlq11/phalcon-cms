@@ -29,8 +29,8 @@ class Module extends ModuleAbstract
 
         $this->alias    = $alias;
         $this->name     = $name;
-        $this->basePath = rtrim($this->basePath, '\/');
-        $this->appDir   = trim($this->appDir, '\/');
+        $this->basePath = rtrim($basePath, '\/');
+        $this->appDir   = trim($appDir, '\/');
 
         $this->moduleConfigLifetime = $this->application->getConfigurations()["module"]->get("config_lifetime");
         $this->prefixNamespace      = $this->application->getConfigurations()[Application::PREFIX_KERNEL_CONFIG]->get("app_namespace", "App");
