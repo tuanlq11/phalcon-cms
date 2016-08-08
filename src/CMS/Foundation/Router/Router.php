@@ -55,7 +55,7 @@ class Router extends \Phalcon\Mvc\Router
                             "controller" => $route["controller"],
                         ], (array)$route["method"]);
                     }
-                    app()->factoryDefault()->set("moduleConfig", $module);
+                    app()->factoryDefault()->set("module", $module);
                 }
             }
 
