@@ -99,7 +99,7 @@ class Module extends ModuleAbstract
                 /** Scan dir config to load file */
                 foreach (scandir($this->moduleConfigPath) as $file) {
                     if ($file == "." || $file == "..") continue;
-                    $separate = explode($file, ".");
+                    $separate = explode(".", $file);
                     if (!isset(ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]])) continue;
 
                     $schema = [
