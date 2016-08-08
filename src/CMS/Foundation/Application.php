@@ -205,6 +205,7 @@ class Application extends ApplicationAbstract
     {
         if (is_null($this->session)) {
             $config = $this->configuration[static::PREFIX_APP_CONFIG]->get("session", []);
+            if (!$config->get("enabled", true)) return null;
 
             $this->session = $session = new Session(
                 $config->get("adapter", Session::ADAPTER_FILE),
