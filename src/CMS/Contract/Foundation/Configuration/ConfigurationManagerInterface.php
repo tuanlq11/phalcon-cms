@@ -1,6 +1,8 @@
 <?php
 namespace CMS\Contract\Foundation\Configuration;
 
+use CMS\Foundation\Configuration\Configuration;
+
 interface ConfigurationManagerInterface
 {
     /**
@@ -54,7 +56,7 @@ interface ConfigurationManagerInterface
      * @param $name
      * @param $default
      *
-     * @return mixed
+     * @return Configuration
      */
     public function get($name, $default = null);
 
