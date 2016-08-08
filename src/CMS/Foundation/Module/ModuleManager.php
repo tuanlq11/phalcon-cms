@@ -10,21 +10,20 @@ class ModuleManager extends ModuleManagerAbstract
      * ModuleManager constructor.
      *
      * @param $appPath
+     * @param $config Configuration
      */
-    public function __construct($appPath)
+    public function __construct($appPath, Configuration &$config)
     {
         $this->appPath = $appPath;
-        print_r($appPath);
-        exit;
+        $this->config = &$config;
     }
 
     /**
      * Load Module Schema from module.yaml
      *
-     * @param Configuration $config
      */
-    public function loadModuleSchema(Configuration $config)
+    public function loadModuleSchema()
     {
-        print_r($config->toArray());
+        print_r($this->config->toArray());
     }
 }

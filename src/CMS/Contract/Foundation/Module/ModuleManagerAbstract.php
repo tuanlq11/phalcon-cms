@@ -1,6 +1,8 @@
 <?php
 namespace CMS\Contract\Foundation\Module;
 
+use CMS\Foundation\Configuration\Configuration;
+
 abstract class ModuleManagerAbstract implements ModuleManagerInterface
 {
     /** @var  string */
@@ -8,4 +10,7 @@ abstract class ModuleManagerAbstract implements ModuleManagerInterface
 
     /** @var  array */
     protected $module;
+
+    /** @var  Configuration */
+    protected $config;
 }

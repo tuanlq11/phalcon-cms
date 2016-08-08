@@ -9,9 +9,10 @@ interface ModuleManagerInterface
      * ModuleManagerInterface constructor.
      *
      * @param $appPath
+     * @param $config
      */
-    public function __construct($appPath);
+    public function __construct($appPath, Configuration &$config);
 
-    public function loadModuleSchema(Configuration $config);
+    public function loadModuleSchema();
 
 }
