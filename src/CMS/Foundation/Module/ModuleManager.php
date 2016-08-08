@@ -3,6 +3,7 @@ namespace CMS\Foundation\Module;
 
 use CMS\Contract\Foundation\Module\ModuleManagerAbstract;
 use CMS\Foundation\Configuration\Configuration;
+use CMS\Helper\Str;
 
 class ModuleManager extends ModuleManagerAbstract
 {
@@ -29,7 +30,7 @@ class ModuleManager extends ModuleManagerAbstract
             if (array_get($module, "disabled", false)) continue;
             $alias = array_get($module, "alias", $name);
 
-            $this->module[$name] = new Module($name, $this->appPath, $alias);
+            $this->module[$name] = new Module(Str::studly($name), $this->appPath, $alias);
             $this->schema[$name] = [$this->module[$name]->bootstrap()];
         }
     }
