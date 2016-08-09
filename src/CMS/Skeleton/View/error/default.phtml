@@ -251,5 +251,12 @@
     <h2 class="block_exception clear_fix">
         <span class="exception_title"><?php echo $message ?> in <?php echo $file ?></span>
     </h2>
+    <div class="block">
+        <ol class="traces list_exception">
+            <?php foreach ($trace as $key => $value): ?>
+                <?php echo $key ?>
+            <?php endforeach; ?>
+        </ol>
+    </div>
 </div>
 </body>
