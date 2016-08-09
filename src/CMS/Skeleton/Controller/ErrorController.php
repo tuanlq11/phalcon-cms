@@ -15,6 +15,6 @@ class ErrorController extends Controller
         $this->view->code    = $exception->getCode();
         $this->view->file    = $exception->getFile();
         $this->view->line    = $exception->getLine();
-        $this->view->trace   = $exception->getTrace();
+        $this->view->trace   = explode("\n", $exception->getTraceAsString());
     }
 }
