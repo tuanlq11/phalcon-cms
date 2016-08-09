@@ -39,33 +39,68 @@ class Translation extends TranslationAbstract
     {
         if ($this->loaded) return;
 
-        switch ($this->config["source"]) {
-            case static::SOURCE_FILE:
-                $location = $this->app->basePath() . DIRECTORY_SEPARATOR . $this->config["location"];
-                if (!is_dir($location)) break;
+        if (is_null(($cached = $this->fromCache()))) {
 
-                foreach (scandir($location) as $file) {
-                    if ($file == "." || $file == "..") continue;
-                    $separate = explode(".", $file);
-                    if (!isset(ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]])) continue;
+            switch ($this->config["source"]) {
+                case static::SOURCE_FILE:
+                    $location = $this->app->basePath() . DIRECTORY_SEPARATOR . $this->config["location"];
+                    if (!is_dir($location)) break;
 
-                    $name   = $separate[0];
-                    $file   = $location . DIRECTORY_SEPARATOR . $file;
-                    $driver = ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]];
+                    foreach (scandir($location) as $file) {
+                        if ($file == "." || $file == "..") continue;
+                        $separate = explode(".", $file);
+                        if (!isset(ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]])) continue;
 
-                    $config                 = (new Configuration($file, $name, $driver))->load();
-                    $locale                 = substr($name, strlen($this->config["prefix"]));
-                    $this->message[$locale] = new NativeArray(["content" => $config->toArray()]);
-                }
+                        $name   = $separate[0];
+                        $file   = $location . DIRECTORY_SEPARATOR . $file;
+                        $driver = ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]];
 
-                break;
-            case static::SOURCE_DATABASE:
-                break;
-            case static::SOURCE_HYBRID;
-                break;
+                        $config                 = (new Configuration($file, $name, $driver))->load();
+                        $locale                 = substr($name, strlen($this->config["prefix"]));
+                        $this->message[$locale] = new NativeArray(["content" => $config->toArray()]);
+                    }
+
+                    break;
+                case static::SOURCE_DATABASE:
+                    break;
+                case static::SOURCE_HYBRID;
+                    break;
+            }
+
+            /** Store to cache */
+            $this->toCache();
+        } else {
+            $this->message = $cached;
         }
 
         $this->loaded = true;
+    }
+
+    /**
+     * Get from cache
+     *
+     * @return NativeArray[]
+     */
+    protected function fromCache()
+    {
+        $key = "translation_{$this->source}";
+        if (app()->environment() == Application::ENV_PROD && app()->cache_default()->exists($key)) {
+            return app()->cache_default()->get($key);
+        }
+
+        return null;
+    }
+
+    /**
+     * Store to cache
+     *
+     * @return void
+     */
+    protected function toCache()
+    {
+        $key = "translation_{$this->source}";
+
+        app()->cache_default()->save($key, $this->message, $this->config["lifetime"]);
     }
 
     /**

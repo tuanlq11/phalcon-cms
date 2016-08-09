@@ -2,7 +2,6 @@
 namespace CMS\Contract\Foundation\Translation;
 
 use CMS\Foundation\Application;
-use CMS\Foundation\Configuration\ConfigurationManager;
 use Phalcon\Config;
 use Phalcon\Translate\Adapter\NativeArray;
 
@@ -12,6 +11,7 @@ abstract class TranslationAbstract implements TranslationInterface
         "source"   => TranslationInterface::SOURCE_FILE,
         "prefix"   => "message_",
         "location" => "resource/message",
+        "lifetime" => 300,
     ];
 
     /** @var bool */
@@ -36,4 +36,22 @@ abstract class TranslationAbstract implements TranslationInterface
      * @var NativeArray[]
      */
     protected $message;
+
+    /**
+     * Get from cache
+     *
+     * @return NativeArray[]
+     */
+    protected function fromCache()
+    {
+    }
+
+    /**
+     * Store to cache
+     *
+     * @return void
+     */
+    protected function toCache()
+    {
+    }
 }

@@ -19,5 +19,6 @@ return [
         "source"   => \CMS\Contract\Foundation\Translation\TranslationInterface::SOURCE_FILE,
         "prefix"   => "message_",
         "location" => "resource/Message",
+        "lifetime" => 300,
     ],
 ];
