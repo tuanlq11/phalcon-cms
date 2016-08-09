@@ -254,7 +254,9 @@
     <div class="block">
         <ol class="traces list_exception">
             <?php foreach ($trace as $key => $value): ?>
-                <?php print_r(get_class($value)) ?>
+                <?php echo "<pre>";
+                print_r($value);
+                exit; ?>
             <?php endforeach; ?>
         </ol>
     </div>
