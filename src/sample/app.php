@@ -14,4 +14,10 @@ return [
     ],
 
     "exception" => \CMS\Plugin\Exception::class,
+
+    "translation" => [
+        "source"   => \CMS\Contract\Translation\TranslationInterface::SOURCE_FILE,
+        "prefix"   => "message_",
+        "location" => "resource/message",
+    ],
 ];

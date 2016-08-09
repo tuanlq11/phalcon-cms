@@ -5,6 +5,7 @@ use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Contract\Foundation\Cache\CacheManagerInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Session\Session;
+use CMS\Foundation\Translation\Translation;
 
 interface ApplicationInterface
 {
@@ -143,6 +144,11 @@ interface ApplicationInterface
      * @return mixed
      */
     public function bindService($name, &$service, $shared = false);
+
+    /**
+     * @return Translation
+     */
+    public function translation();
 
     /**
      * @param $name

@@ -8,6 +8,7 @@ use CMS\Foundation\Cache\CacheManager;
 use CMS\Foundation\Module\ModuleManager;
 use CMS\Foundation\Mvc\Dispatcher;
 use CMS\Foundation\Session\Session;
+use CMS\Foundation\Translation\Translation;
 use CMS\Foundation\View\View;
 use CMS\Plugin\Exception;
 use CMS\Skeleton\Bootstrap;
@@ -287,7 +288,7 @@ class Application extends ApplicationAbstract
      */
     function bindBaseService()
     {
-        foreach (["cache", "session", "view", "router", "url", "db", "dispatcher"] as $service) {
+        foreach (["cache", "session", "view", "router", "url", "db", "dispatcher", "translation"] as $service) {
             if (method_exists($this, $service)) {
                 $this->$service();
             }
@@ -303,12 +304,30 @@ class Application extends ApplicationAbstract
     }
 
     /**
+     * @return Translation
+     */
+    public function translation()
+    {
+        if (is_null($this->translation)) {
+            $this->translation = $translation = new Translation($this);
+            $callback          = function () use ($translation) {
+                return $translation;
+            };
+
+            $this->bindService("translation", $callback, true);
+        }
+
+        return $this->translation;
+    }
+
+    /**
      * @return void
      */
     function dispatcher()
     {
+        $this->dispatcher = &$dispatcher = new Dispatcher();
+
         $callback = function () use (&$dispatcher) {
-            $dispatcher   = new Dispatcher();
             $eventManager = new EventManager();
 
             $class = app()->configuration[app()::PREFIX_APP_CONFIG]->get("exception", Exception::class);
@@ -320,6 +339,5 @@ class Application extends ApplicationAbstract
         };
         $this->bindService("dispatcher", $callback, true);
     }
-
 
 }
