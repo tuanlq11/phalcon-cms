@@ -1,8 +1,7 @@
 <?php
 namespace CMS\Foundation\Translation;
 
-use CMS\Contract\Translation\TranslationAbstract;
-use CMS\Contract\Translation\TranslationInterface;
+use CMS\Contract\Foundation\Translation\TranslationAbstract;
 use CMS\Foundation\Application;
 
 class Translation extends TranslationAbstract
@@ -28,7 +27,7 @@ class Translation extends TranslationAbstract
         $this->config = (array)$this->app->getConfigurations()->get(Application::PREFIX_APP_CONFIG)
             ->get("translation", $this->default_config);
 
-        
+
     }
 
     /**
