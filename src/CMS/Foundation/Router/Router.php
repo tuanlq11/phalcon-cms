@@ -41,7 +41,7 @@ class Router extends \Phalcon\Mvc\Router
             $separated = explode("/", $handledUri);
 
             /** Dynamic load module by uri */
-            if (count($separated) > 2) {
+            if (count($separated) >= 2) {
                 $moduleName = Str::studly($separated[1]);
                 if (isset($this->module[$moduleName])) {
                     $module       = $this->module[$moduleName];

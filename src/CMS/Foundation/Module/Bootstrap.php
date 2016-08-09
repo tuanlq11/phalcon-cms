@@ -8,7 +8,7 @@ class Bootstrap implements ModuleDefinitionInterface
 {
     public function registerAutoloaders(\Phalcon\DiInterface $di = null)
     {
-        // TODO: Implement registerAutoloaders() method.
+        
     }
 
     public function registerServices(\Phalcon\DiInterface $di)
