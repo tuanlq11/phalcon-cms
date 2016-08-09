@@ -2,7 +2,10 @@
 namespace CMS\Foundation\Translation;
 
 use CMS\Contract\Foundation\Translation\TranslationAbstract;
+use CMS\Contract\Foundation\Configuration\ConfigurationAbstract;
 use CMS\Foundation\Application;
+use CMS\Foundation\Configuration\Configuration;
+use Phalcon\Translate\Adapter\NativeArray;
 
 class Translation extends TranslationAbstract
 {
@@ -27,7 +30,61 @@ class Translation extends TranslationAbstract
         $this->config = (array)$this->app->getConfigurations()->get(Application::PREFIX_APP_CONFIG)
             ->get("translation", $this->default_config);
 
+    }
 
+    /**
+     * @return void
+     */
+    public function load()
+    {
+        if ($this->loaded) return;
+
+        switch ($this->config["source"]) {
+            case static::SOURCE_FILE:
+                $location = $this->app->basePath() . DIRECTORY_SEPARATOR . $this->config["location"];
+                if (!is_dir($location)) break;
+
+                foreach (scandir($location) as $file) {
+                    if ($file == "." || $file == "..") continue;
+                    $separate = explode(".", $file);
+                    if (!isset(ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]])) continue;
+
+                    $name   = $separate[0];
+                    $file   = $location . DIRECTORY_SEPARATOR . $file;
+                    $driver = ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]];
+
+                    $config                 = new Configuration($file, $name, $driver);
+                    $locale                 = substr($name, strlen($this->config["prefix"]));
+                    $this->message[$locale] = new NativeArray((array)$config);
+                }
+
+                break;
+            case static::SOURCE_DATABASE:
+                break;
+            case static::SOURCE_HYBRID;
+                break;
+        }
+
+        $this->loaded = true;
+    }
+
+    /**
+     * @param string $key
+     * @param null   $locale
+     * @param array  $placeholders
+     *
+     * @return string|null
+     */
+    public function _($key, $placeholders = null, $locale = null)
+    {
+        $this->load();
+        $locale = is_null($locale) ? $this->locale() : $locale;
+
+        if (isset($this->message[$locale])) {
+            return $this->message[$locale]->_($key, $placeholders);
+        }
+
+        return null;
     }
 
     /**

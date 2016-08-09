@@ -16,8 +16,8 @@ return [
     "exception" => \CMS\Plugin\Exception::class,
 
     "translation" => [
-        "source"   => \CMS\Contract\Translation\TranslationInterface::SOURCE_FILE,
+        "source"   => \CMS\Contract\Foundation\Translation\TranslationInterface::SOURCE_FILE,
         "prefix"   => "message_",
-        "location" => "resource/message",
+        "location" => "resource/Message",
     ],
 ];

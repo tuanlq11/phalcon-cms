@@ -20,6 +20,20 @@ interface TranslationInterface
     public static function instance(&$app = null);
 
     /**
+     * @return void
+     */
+    public function load();
+
+    /**
+     * @param $key          string
+     * @param $locale       string|null
+     * @param $placeholders array
+     *
+     * @return string
+     */
+    public function _($key, $placeholders = null, $locale = null);
+
+    /**
      * TranslationInterface constructor.
      *
      * @param $app Application

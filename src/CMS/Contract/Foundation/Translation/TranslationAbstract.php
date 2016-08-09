@@ -4,6 +4,7 @@ namespace CMS\Contract\Foundation\Translation;
 use CMS\Foundation\Application;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use Phalcon\Config;
+use Phalcon\Translate\Adapter\NativeArray;
 
 abstract class TranslationAbstract implements TranslationInterface
 {
@@ -12,6 +13,9 @@ abstract class TranslationAbstract implements TranslationInterface
         "prefix"   => "message_",
         "location" => "resource/message",
     ];
+
+    /** @var bool */
+    protected $loaded = false;
 
     /** @var  Application */
     protected $app;
@@ -29,7 +33,7 @@ abstract class TranslationAbstract implements TranslationInterface
     protected $config;
 
     /**
-     * @var ConfigurationManager
+     * @var NativeArray[]
      */
     protected $message;
 }
