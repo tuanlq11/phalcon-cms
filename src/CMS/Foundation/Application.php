@@ -133,7 +133,15 @@ class Application extends ApplicationAbstract
         /** Start session */
         $this->session->handle();
 
-        return $this->application()->handle();
+        try {
+            return $this->application()->handle()->getContent();
+        } catch (\Exception $e) {
+            echo get_class($e), ": ", $e->getMessage(), "</br>";
+            echo " File=", $e->getFile(), "</br>";
+            echo " Line=", $e->getLine(), "</br>";
+            echo $e->getTraceAsString();
+            die(404);
+        }
     }
 
     /**
