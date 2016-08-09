@@ -321,23 +321,27 @@ class Application extends ApplicationAbstract
     }
 
     /**
-     * @return void
+     * @return Dispatcher
      */
     public function dispatcher()
     {
-        $this->dispatcher = $dispatcher = new Dispatcher();
+        if (is_null($this->dispatcher)) {
+            $this->dispatcher = $dispatcher = new Dispatcher();
 
-        $callback = function () use ($dispatcher) {
-            $eventManager = new EventManager();
+            $callback = function () use ($dispatcher) {
+                $eventManager = new EventManager();
 
-            $class = app()->configuration[app()::PREFIX_APP_CONFIG]->get("exception", Exception::class);
-            $eventManager->attach("dispatch:beforeException", new $class());
+                $class = app()->configuration[app()::PREFIX_APP_CONFIG]->get("exception", Exception::class);
+                $eventManager->attach("dispatch:beforeException", new $class());
 
-            $dispatcher->setEventsManager($eventManager);
+                $dispatcher->setEventsManager($eventManager);
 
-            return $dispatcher;
-        };
-        $this->bindService("dispatcher", $callback, true);
+                return $dispatcher;
+            };
+            $this->bindService("dispatcher", $callback, true);
+        }
+
+        return $this->dispatcher;
     }
 
 }
