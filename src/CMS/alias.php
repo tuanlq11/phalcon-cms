@@ -46,6 +46,14 @@ function &app()
 }
 
 /**
+ * @return \CMS\Foundation\Session\Session
+ */
+function session()
+{
+    return app()->session();
+}
+
+/**
  * @param      $array
  * @param      $key
  * @param null $default
