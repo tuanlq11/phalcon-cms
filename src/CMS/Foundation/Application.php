@@ -364,7 +364,7 @@ class Application extends ApplicationAbstract
             $config       = (array)$this->configuration[Application::PREFIX_APP_CONFIG]->get("dispatcher", []);
 
             foreach (array_get($config, "event", []) as $event) {
-                if (($class = (array_get($event, null))) === null ||
+                if (($class = (array_get($event, "className", null))) === null ||
                     ($eventType = array_get($event, "eventType", null)) === null
                 ) continue;
                 $eventManager->attach($eventType, new $class(), array_get($event, "priority", 0));
