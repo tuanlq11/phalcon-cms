@@ -66,6 +66,18 @@ function array_get($array, $key, $default = null)
 }
 
 /**
+ * @param      $key
+ * @param null $placeholders
+ * @param null $locale
+ *
+ * @return null|string
+ */
+function tran($key, $placeholders = null, $locale = null)
+{
+    return app()->translation()->_($key, $placeholders, $locale);
+}
+
+/**
  * @param $value
  *
  * @return mixed
