@@ -337,7 +337,7 @@ class Application extends ApplicationAbstract
                 $config["port"],
                 $config["user"],
                 $config["password"],
-                $config["dbname"]
+                $config["db_name"]
             );
 
             $callback = function () use ($db) {

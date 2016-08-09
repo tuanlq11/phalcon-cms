@@ -8,7 +8,7 @@ return [
         "port"     => env("DB_PORT", 5432),
         "user"     => env("DB_USER", "postgres"),
         "password" => env("DB_PASSWORD", ""),
-        "name"     => env("DB_NAME", "postgres"),
+        "db_name"  => env("DB_NAME", "postgres"),
     ],
 
     /** Cache Configuration */
