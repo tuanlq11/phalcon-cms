@@ -53,9 +53,9 @@ class Translation extends TranslationAbstract
                     $file   = $location . DIRECTORY_SEPARATOR . $file;
                     $driver = ConfigurationAbstract::$EXTENSION_DRIVER[$separate[1]];
 
-                    $config                 = new Configuration($file, $name, $driver);
+                    $config                 = (new Configuration($file, $name, $driver))->load();
                     $locale                 = substr($name, strlen($this->config["prefix"]));
-                    $this->message[$locale] = new NativeArray((array)$config);
+                    $this->message[$locale] = new NativeArray($config->toArray());
                 }
 
                 break;

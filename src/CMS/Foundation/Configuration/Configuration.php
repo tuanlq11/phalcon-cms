@@ -21,11 +21,15 @@ class Configuration extends ConfigurationAbstract
 
     /**
      * Load config from file
+     *
+     * @return $this
      */
     public function load()
     {
         $this->config     = new $this->driver($this->file);
         $this->arr_config = $this->config->toArray();
+
+        return $this;
     }
 
     /**
