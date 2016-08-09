@@ -372,7 +372,7 @@ class Application extends ApplicationAbstract
 
             $dispatcher->setEventsManager($eventManager);
 
-            $this->bindService("dispatcher", $callback, true);
+            $this->bindService("dispatcher", $dispatcher, true);
         }
 
         return $this->dispatcher;
