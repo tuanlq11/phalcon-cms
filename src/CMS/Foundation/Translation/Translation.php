@@ -30,6 +30,7 @@ class Translation extends TranslationAbstract
         $this->config = (array)$this->app->getConfigurations()->get(Application::PREFIX_APP_CONFIG)
             ->get("translation", $this->default_config);
 
+        $this->lifetime = array_get($this->config, "lifetime", null);
     }
 
     /**
@@ -100,7 +101,8 @@ class Translation extends TranslationAbstract
     {
         $key = "translation_{$this->source}";
 
-        app()->cache_default()->save($key, $this->message, $this->config["lifetime"]);
+        if ($this->lifetime && $this->lifetime > 0)
+            app()->cache_default()->save($key, $this->message, $this->lifetime);
     }
 
     /**

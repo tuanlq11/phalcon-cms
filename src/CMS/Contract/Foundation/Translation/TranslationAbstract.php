@@ -17,6 +17,9 @@ abstract class TranslationAbstract implements TranslationInterface
     /** @var bool */
     protected $loaded = false;
 
+    /** @var  int */
+    protected $lifetime;
+
     /** @var  Application */
     protected $app;
 
