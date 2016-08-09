@@ -179,6 +179,8 @@ class Application extends ApplicationAbstract
     function loadBaseConfiguration()
     {
         $this->configuration->create($this->baseConfigurationSchema);
+
+        date_default_timezone_set($this->configuration[Application::PREFIX_APP_CONFIG]->get("timezone", "UTC"));
     }
 
     /**
