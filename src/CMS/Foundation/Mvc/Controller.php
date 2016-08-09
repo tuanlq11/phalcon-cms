@@ -19,4 +19,12 @@ class Controller extends \Phalcon\Mvc\Controller
     {
         return $this->module;
     }
+
+    /**
+     * @return Translation
+     */
+    public function translation()
+    {
+        return $this->translation;
+    }
 }
