@@ -6,12 +6,6 @@ use CMS\Foundation\Translation\Translation;
 
 class Controller extends \Phalcon\Mvc\Controller
 {
-    /** @var  Translation */
-    public $translation;
-
-    /** @var  Module */
-    public $module;
-
     /**
      * @return Module
      */
