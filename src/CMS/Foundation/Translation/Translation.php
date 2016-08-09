@@ -63,7 +63,19 @@ class Translation extends TranslationAbstract
 
                     break;
                 case static::SOURCE_DATABASE:
-                    /** TODO: Support Translation DB */
+                    $message = [];
+                    foreach (\CMS\Skeleton\Model\Translation::message($this->lifetime) as $entity) {
+                        $locale = $entity["locale"];
+                        if (!isset($message[$locale])) $message[$locale] = [];
+                        $message[$locale][$entity["key"]] = $message[$entity["message"]];
+                    }
+                    foreach ($message as $locale => $entity) {
+                        $this->message[$locale] = new NativeArray([
+                            "content" => $entity,
+                        ]);
+                    }
+
+
                     break;
                 case static::SOURCE_HYBRID;
                     /** TODO: Support Translation Hybrid */
