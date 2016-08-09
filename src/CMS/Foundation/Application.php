@@ -5,6 +5,7 @@ namespace CMS\Foundation;
 use CMS\Contract\Foundation\Cache\CacheInterface;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Cache\CacheManager;
+use CMS\Foundation\Database\Database;
 use CMS\Foundation\Module\ModuleManager;
 use CMS\Foundation\Mvc\Dispatcher;
 use CMS\Foundation\Session\Session;
@@ -318,6 +319,35 @@ class Application extends ApplicationAbstract
         }
 
         return $this->translation;
+    }
+
+    /**
+     * @return Database
+     * @throws \Phalcon\Exception
+     */
+    public function db()
+    {
+        if (is_null($this->db)) {
+            $config = $this->configuration[Application::PREFIX_KERNEL_CONFIG]->get("db", null);
+            if (is_null($config)) throw new \Phalcon\Exception("Database Provider: Configuration is not found");
+
+            $this->db = $db = new Database(
+                $config["adapter"],
+                $config["host"],
+                $config["port"],
+                $config["user"],
+                $config["password"],
+                $config["dbname"]
+            );
+
+            $callback = function () use ($db) {
+                return $db->adapter();
+            };
+
+            $this->bindService("db", $callback, true);
+        }
+
+        return $this->db;
     }
 
     /**

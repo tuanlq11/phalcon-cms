@@ -7,6 +7,7 @@ use CMS\Contract\Foundation\Configuration\ConfigurationInterface;
 use CMS\Foundation\Cache\Cache;
 use CMS\Foundation\Configuration\ConfigurationManager;
 use CMS\Foundation\Container\Container;
+use CMS\Foundation\Database\Database;
 use CMS\Foundation\Module\ModuleManager;
 use CMS\Foundation\Mvc\Dispatcher;
 use CMS\Foundation\Session\Session;
@@ -74,6 +75,7 @@ abstract class ApplicationAbstract implements ApplicationInterface
      */
     protected $view;
 
+    /** @var  Database */
     protected $db;
 
     protected $url;
