@@ -1,5 +1,5 @@
 <?php
-namespace CMS\Contract\Translation;
+namespace CMS\Contract\Foundation\Transaltion;
 
 use CMS\Foundation\Application;
 use CMS\Foundation\Configuration\ConfigurationManager;
