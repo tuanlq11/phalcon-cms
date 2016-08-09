@@ -323,11 +323,11 @@ class Application extends ApplicationAbstract
     /**
      * @return void
      */
-    function dispatcher()
+    public function dispatcher()
     {
-        $this->dispatcher = &$dispatcher = new Dispatcher();
+        $this->dispatcher = $dispatcher = new Dispatcher();
 
-        $callback = function () use (&$dispatcher) {
+        $callback = function () use ($dispatcher) {
             $eventManager = new EventManager();
 
             $class = app()->configuration[app()::PREFIX_APP_CONFIG]->get("exception", Exception::class);
