@@ -360,16 +360,18 @@ class Application extends ApplicationAbstract
         if (is_null($this->dispatcher)) {
             $this->dispatcher = $dispatcher = new Dispatcher();
 
-            $callback = function () use ($dispatcher) {
-                $eventManager = new EventManager();
+            $eventManager = new EventManager();
+            $config       = (array)$this->configuration[Application::PREFIX_APP_CONFIG]->get("dispatcher", []);
 
-                $class = app()->configuration[app()::PREFIX_APP_CONFIG]->get("exception", Exception::class);
-                $eventManager->attach("dispatch:beforeException", new $class());
+            foreach (array_get($config, "event") as $event) {
+                if (($class = (array_get($event, null))) === null ||
+                    ($eventType = array_get($event, "eventType", null)) === null
+                ) continue;
+                $eventManager->attach($eventType, new $class(), array_get($event, "priority", 0));
+            }
 
-                $dispatcher->setEventsManager($eventManager);
+            $dispatcher->setEventsManager($eventManager);
 
-                return $dispatcher;
-            };
             $this->bindService("dispatcher", $callback, true);
         }
 
