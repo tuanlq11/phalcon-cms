@@ -55,7 +55,7 @@ class Translation extends TranslationAbstract
 
                     $config                 = (new Configuration($file, $name, $driver))->load();
                     $locale                 = substr($name, strlen($this->config["prefix"]));
-                    $this->message[$locale] = new NativeArray($config->toArray());
+                    $this->message[$locale] = new NativeArray(["content" => $config->toArray()]);
                 }
 
                 break;
