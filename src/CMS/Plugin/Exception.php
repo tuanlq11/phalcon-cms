@@ -2,7 +2,6 @@
 namespace CMS\Plugin;
 
 use CMS\Foundation\Mvc\Dispatcher;
-use CMS\Skeleton\Controller\ErrorController;
 use Phalcon\Events\Event;
 
 class Exception

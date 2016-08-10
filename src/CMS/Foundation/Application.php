@@ -11,8 +11,6 @@ use CMS\Foundation\Mvc\Dispatcher;
 use CMS\Foundation\Session\Session;
 use CMS\Foundation\Translation\Translation;
 use CMS\Foundation\View\View;
-use CMS\Plugin\Exception;
-use CMS\Skeleton\Bootstrap;
 use Dotenv\Dotenv;
 use Phalcon\Di\FactoryDefault;
 use CMS\Contract\Foundation\ApplicationAbstract;
@@ -247,11 +245,11 @@ class Application extends ApplicationAbstract
     function view()
     {
         if (is_null($this->view)) {
-            $this->view = new View();
+            $this->view = $view = new View();
             $this->view->setViewsDir($this->basePath . DIRECTORY_SEPARATOR . static::VIEW_DEFAULT);
+            $this->view->voltEngine();
 
-            $view     = &$this->view;
-            $callback = function () use (&$view) {
+            $callback = function () use ($view) {
                 return $view;
             };
             $this->bindService(static::VIEW_SERVICE_NAME, $callback, true);
