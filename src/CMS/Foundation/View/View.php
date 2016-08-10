@@ -8,7 +8,7 @@ class View extends \Phalcon\Mvc\View
     public function voltEngine()
     {
         $this->registerEngines([
-            ".volt" => "voltService",
+            ".volt" => "volt",
         ]);
         /** Volt Service */
         $callback = function ($view, $di) {
@@ -30,6 +30,6 @@ class View extends \Phalcon\Mvc\View
             return $volt;
         };
 
-        app()->bindService("voltService", $callback, true);
+        app()->bindService("volt", $callback, true);
     }
 }
