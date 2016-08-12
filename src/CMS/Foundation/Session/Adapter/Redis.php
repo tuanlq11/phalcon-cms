@@ -48,32 +48,32 @@ class Redis extends \Phalcon\Session\Adapter\Redis
 //    }
 
 
-    /**
-     * @param bool $deleteOldSession
-     *
-     * @return $this
-     */
-    public function regenerateId($deleteOldSession = true)
-    {
-        $oldId      = $this->getId();
-        $oldSession = $this->read($this->getId());
-        $this->_redis->delete($this->getId());
-
-        $newId = $this->createId();
-        if (!$deleteOldSession) {
-            $this->_redis->save($newId, $oldSession, $this->_lifetime);
-        }
-
-        setcookie($this->getName(), $oldSession, null, "/");
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function createId()
-    {
-        return sha1(uniqid('', true) . Str::random(25) . microtime(true));
-    }
+//    /**
+//     * @param bool $deleteOldSession
+//     *
+//     * @return $this
+//     */
+//    public function regenerateId($deleteOldSession = true)
+//    {
+//        $oldId      = $this->getId();
+//        $oldSession = $this->read($this->getId());
+//        $this->_redis->delete($this->getId());
+//
+//        $newId = $this->createId();
+//        if (!$deleteOldSession) {
+//            $this->_redis->save($newId, $oldSession, $this->_lifetime);
+//        }
+//
+//        setcookie($this->getName(), $oldSession, null, "/");
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * @return string
+//     */
+//    public function createId()
+//    {
+//        return sha1(uniqid('', true) . Str::random(25) . microtime(true));
+//    }
 }
