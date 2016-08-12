@@ -1,5 +1,6 @@
 <?php
 namespace CMS\Foundation\Session\Adapter;
+use CMS\Helper\Str;
 
 /**
  * Class Redis
@@ -62,4 +63,11 @@ class Redis extends \Phalcon\Session\Adapter\Redis
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function createId()
+    {
+        return sha1(uniqid('', true) . Str::random(25) . microtime(true));
+    }
 }
