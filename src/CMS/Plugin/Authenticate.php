@@ -31,8 +31,6 @@ class Authenticate
         if (is_null($credential) || $credential === false) return true;
 
         /** Check credential require */
-        if (is_null($credential)) return true;
-
         if ((bool)$session->get("auth", false) === true && Role::check($session->get("credential", []), $credential)) {
             return true;
         } else {
