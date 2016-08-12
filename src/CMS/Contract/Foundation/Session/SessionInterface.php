@@ -1,12 +1,13 @@
 <?php
 namespace CMS\Contract\Foundation\Session;
 
+use CMS\Foundation\Session\Adapter\Redis;
 use Phalcon\Session\Adapter;
 
 interface SessionInterface
 {
 
-    const ADAPTER_REDIS        = Adapter\Redis::class;
+    const ADAPTER_REDIS        = Redis::class;
     const ADAPTER_FILE         = Adapter\Files::class;
     const ADAPTER_MEMCACHE     = Adapter\Memcache::class;
     const ADAPTER_LIBMEMCACHED = Adapter\Libmemcached::class;
