@@ -29,7 +29,12 @@ return [
         "event" => [
             [
                 "className" => CMS\Plugin\Exception::class,
-                "eventType" => "dispatch:beforeException",
+                "eventType" => \CMS\Contract\Foundation\ApplicationInterface::EVENT_BEFORE_EXCEPTION,
+                "priority"  => 1001,
+            ],
+            [
+                "className" => CMS\Plugin\Authenticate::class,
+                "eventType" => \CMS\Contract\Foundation\ApplicationInterface::EVENT_BEFORE_EXECUTE_ROUTE,
                 "priority"  => 1000,
             ],
         ],

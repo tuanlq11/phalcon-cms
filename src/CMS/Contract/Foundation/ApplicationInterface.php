@@ -38,15 +38,15 @@ interface ApplicationInterface
     const ENV_TEST    = "test";
     const ENV_STAGING = "staging";
 
-    const EVENT_BEFORE_DISPATCH_LOOP    = "beforeDispatchLoop";
-    const EVENT_BEFORE_DISPATCH         = "beforeDispatch";
-    const EVENT_BEFORE_EXECUTE_ROUTE    = "beforeExecuteRoute";
-    const EVENT_INITIALIZE_CONTROLLER   = "initialize";
-    const EVENT_AFTER_EXECUTE_ROUTE     = "afterExecuteRoute";
-    const EVENT_BEFORE_NOT_FOUND_ACTION = "beforeNotFoundAction";
-    const EVENT_BEFORE_EXCEPTION        = "beforeException";
-    const EVENT_AFTER_DISPATCH          = "afterDispatch";
-    const EVENT_AFTER_DISPATCH_LOOP     = "afterDispatchLoop";
+    const EVENT_BEFORE_DISPATCH_LOOP    = "dispatch:beforeDispatchLoop";
+    const EVENT_BEFORE_DISPATCH         = "dispatch:beforeDispatch";
+    const EVENT_BEFORE_EXECUTE_ROUTE    = "dispatch:beforeExecuteRoute";
+    const EVENT_INITIALIZE_CONTROLLER   = "dispatch:initialize";
+    const EVENT_AFTER_EXECUTE_ROUTE     = "dispatch:afterExecuteRoute";
+    const EVENT_BEFORE_NOT_FOUND_ACTION = "dispatch:beforeNotFoundAction";
+    const EVENT_BEFORE_EXCEPTION        = "dispatch:beforeException";
+    const EVENT_AFTER_DISPATCH          = "dispatch:afterDispatch";
+    const EVENT_AFTER_DISPATCH_LOOP     = "dispatch:afterDispatchLoop";
 
     /**
      * ApplicationInterface constructor.
