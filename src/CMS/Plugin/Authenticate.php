@@ -4,13 +4,13 @@ namespace CMS\Plugin;
 use CMS\Helper\Role;
 use Phalcon\Dispatcher;
 use Phalcon\Events\Event;
-use Phalcon\Mvc\Router\Route;
+use Phalcon\Exception as PhalconException;
 
 class Authenticate
 {
     /**
-     * @param $event
-     * @param $dispatcher
+     * @param $event      Event
+     * @param $dispatcher Dispatcher
      *
      * @return bool
      */
@@ -26,12 +26,18 @@ class Authenticate
 
         $credential = array_get($config, "credential");
 
-//        /** Check credential require */
-//        if (is_null($credential)) return true;
-//
-//        /** Check session login */
-//        if (!$session->get("auth", false)) return false;
-//
-//        return !Role::check($session->get("credential", []), $credential);
+        /** Check credential require */
+        if (is_null($credential)) return true;
+
+        if ((bool)$session->get("auth", false) === true && Role::check($session->get("credential", []), $credential)) {
+            return true;
+        } else {
+            return $dispatcher->forward([
+                "namespace"  => "CMS\\Skeleton\\Controller",
+                "controller" => "error",
+                "action"     => "default",
+                "params"     => ["exception" => new PhalconException("auth.permission.denied")],
+            ]);
+        }
     }
 }

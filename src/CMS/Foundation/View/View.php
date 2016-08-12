@@ -1,6 +1,7 @@
 <?php
 namespace CMS\Foundation\View;
 
+use Phalcon\Mvc\View\Engine\Php;
 use Phalcon\Mvc\View\Engine\Volt;
 
 class View extends \Phalcon\Mvc\View
@@ -8,7 +9,9 @@ class View extends \Phalcon\Mvc\View
     public function voltEngine()
     {
         $this->registerEngines([
-            ".volt" => "volt",
+            ".volt"  => "volt",
+            ".phtml" => Php::class,
+            ".php"   => Php::class,
         ]);
         /** Volt Service */
         $callback = function ($view, $di) {
