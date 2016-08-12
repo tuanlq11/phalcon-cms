@@ -26,12 +26,12 @@ class Authenticate
 
         $credential = array_get($config, "credential");
 
-        /** Check credential require */
-        if (is_null($credential)) return true;
-
-        /** Check session login */
-        if (!$session->get("auth", false)) return false;
-
-        return !Role::check($session->get("credential", []), $credential);
+//        /** Check credential require */
+//        if (is_null($credential)) return true;
+//
+//        /** Check session login */
+//        if (!$session->get("auth", false)) return false;
+//
+//        return !Role::check($session->get("credential", []), $credential);
     }
 }
