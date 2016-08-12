@@ -249,15 +249,17 @@
 <body>
 <div id="sf-resetcontent" class="sf-reset">
     <h1><?php echo $message ?></h1>
-    <h2 class="block_exception clear_fix">
-        <span class="exception_title">In <?php echo $file ?> Line <?php echo $line ?></span>
-    </h2>
-    <div class="block">
-        <ol class="traces list_exception">
-            <?php foreach ($trace as $key => $value): ?>
-                <li><?php echo $value ?></li>
-            <?php endforeach; ?>
-        </ol>
-    </div>
+    <?php if (env("APP_DEBUG") && app()->environment() != \CMS\Contract\Foundation\ApplicationInterface::ENV_PROD): ?>
+        <h2 class="block_exception clear_fix">
+            <span class="exception_title">In <?php echo $file ?> Line <?php echo $line ?></span>
+        </h2>
+        <div class="block">
+            <ol class="traces list_exception">
+                <?php foreach ($trace as $key => $value): ?>
+                    <li><?php echo $value ?></li>
+                <?php endforeach; ?>
+            </ol>
+        </div>
+    <?php endif; ?>
 </div>
 </body>
