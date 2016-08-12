@@ -70,6 +70,13 @@ interface SessionInterface
     public function regenerateId($deleteOldSession = true);
 
     /**
+     * @param bool $removeData
+     *
+     * @return mixed
+     */
+    public function destroy($removeData = false);
+
+    /**
      * Set session name
      */
     public function setName($name);
