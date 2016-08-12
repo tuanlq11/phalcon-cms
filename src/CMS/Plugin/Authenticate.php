@@ -28,6 +28,8 @@ class Authenticate
 
         $credential = array_get($config, "credential");
 
+        if (is_null($credential) || $credential === false) return true;
+
         /** Check credential require */
         if (is_null($credential)) return true;
 
