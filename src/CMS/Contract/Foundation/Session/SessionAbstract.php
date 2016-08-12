@@ -85,7 +85,6 @@ abstract class SessionAbstract implements SessionInterface
      */
     public function regenerateId($deleteOldSession = true)
     {
-        session_save_path(".");
         $this->adapter->regenerateId($deleteOldSession);
     }
 
