@@ -11,7 +11,7 @@ class ErrorController extends Controller
     public function defaultAction($exception)
     {
         $this->view->setViewsDir(__DIR__ . "/../View");
-        $this->view->message = $exception->getMessage();
+        $this->view->message = tran($exception->getMessage());
         $this->view->code    = $exception->getCode();
         $this->view->file    = $exception->getFile();
         $this->view->line    = $exception->getLine();
