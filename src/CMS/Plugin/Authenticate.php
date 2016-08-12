@@ -16,6 +16,8 @@ class Authenticate
      */
     public function beforeExecuteRoute($event, $dispatcher)
     {
+        if ($dispatcher->wasForwarded()) return true;
+
         $route   = app()->router()->getMatchedRoute();
         $session = app()->session();
 
@@ -32,12 +34,14 @@ class Authenticate
         if ((bool)$session->get("auth", false) === true && Role::check($session->get("credential", []), $credential)) {
             return true;
         } else {
-            return $dispatcher->forward([
+            $dispatcher->forward([
                 "namespace"  => "CMS\\Skeleton\\Controller",
                 "controller" => "error",
                 "action"     => "default",
                 "params"     => ["exception" => new PhalconException("auth.permission.denied")],
             ]);
+
+            return true;
         }
     }
 }
