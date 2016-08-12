@@ -53,7 +53,11 @@ class Router extends \Phalcon\Mvc\Router
                             "namespace"  => array_get($route, "namespace", $module->nsController()),
                             "action"     => $route["action"],
                             "controller" => $route["controller"],
-                        ], (array)$route["method"]);
+                        ], (array)$route["method"])->beforeMatch(function ($uri, $routeInstance) use ($route) {
+                            $routeInstance->config = $route;
+
+                            return true;
+                        });
                     }
                     app()->factoryDefault()->set("module", $module);
                 }
