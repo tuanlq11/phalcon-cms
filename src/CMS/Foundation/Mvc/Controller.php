@@ -2,6 +2,7 @@
 namespace CMS\Foundation\Mvc;
 
 use CMS\Foundation\Module\Module;
+use CMS\Foundation\Session\Session;
 use CMS\Foundation\Translation\Translation;
 
 /**
@@ -9,6 +10,7 @@ use CMS\Foundation\Translation\Translation;
  *
  * @property Module      $module
  * @property Translation $translation
+ * @property Session     $session
  */
 class Controller extends \Phalcon\Mvc\Controller
 {
