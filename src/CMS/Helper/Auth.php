@@ -18,5 +18,6 @@ class Auth
     public static function logout()
     {
         app()->session()->remove("auth");
+        app()->session()->regenerateId();
     }
 }
