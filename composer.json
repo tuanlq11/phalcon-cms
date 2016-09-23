@@ -18,8 +18,7 @@
       "src/CMS/alias.php"
     ],
     "psr-4": {
-      "CMS\\": "src/CMS",
-      "Phalcon\\": "src/Document/Phalcon/"
+      "CMS\\": "src/CMS"
     }
   }
 }
