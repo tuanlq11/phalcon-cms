@@ -4,70 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4a6e9160c165cf8d22827333636a5ca0",
-    "content-hash": "56675383fad75965bd1a1d409154b249",
+    "hash": "7e18797e25aad81bda7ad234f7aa9ef8",
+    "content-hash": "90bd2c630c4c6207940fc1bdfe6304c3",
     "packages": [
-        {
-            "name": "phalcon/devtools",
-            "version": "v3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phalcon/phalcon-devtools.git",
-                "reference": "c10d18545bb8bae1957599e4822bace045a013cb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phalcon/phalcon-devtools/zipball/c10d18545bb8bae1957599e4822bace045a013cb",
-                "reference": "c10d18545bb8bae1957599e4822bace045a013cb",
-                "shasum": ""
-            },
-            "require": {
-                "ext-phalcon": "^3.0",
-                "php": ">=5.5"
-            },
-            "require-dev": {
-                "kherge/box": "^2.7"
-            },
-            "bin": [
-                "phalcon.php"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Phalcon\\": "scripts/Phalcon/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Phalcon Team",
-                    "email": "team@phalconphp.com",
-                    "homepage": "https://phalconphp.com/en/team"
-                },
-                {
-                    "name": "Contributors",
-                    "homepage": "https://github.com/phalcon/phalcon-devtools/graphs/contributors"
-                }
-            ],
-            "description": "This tools provide you useful scripts to generate code helping to develop faster and easy applications that use with Phalcon framework.",
-            "homepage": "http://phalconphp.com",
-            "keywords": [
-                "Devtools",
-                "framework",
-                "phalcon",
-                "phar",
-                "webtools"
-            ],
-            "time": "2016-07-29 19:34:55"
-        },
         {
             "name": "vlucas/phpdotenv",
             "version": "v2.3.0",
